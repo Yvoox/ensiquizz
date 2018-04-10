@@ -11,6 +11,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.Context;
 import model.Player;
 import view.FirstViewController;
 import view.QuizzViewTextController;
@@ -20,6 +21,7 @@ public class Main extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
     private ObservableList<Player> players = FXCollections.observableArrayList();
+    private Context context;
     
     public Main() { //initialisation du joueur 1
     	players.add(new Player("Joueur 1"));
@@ -83,8 +85,16 @@ public class Main extends Application {
         // Ajout de la fenêtre de joueur dans la scene principale
         rootLayout.setCenter(testOverView);
         
+        String[] mr = new String[3];
+        mr[0] = "Mauvaise reponse 1";
+        mr[1] = "Mauvaise reponse 2";
+        mr[2] = "Mauvaise reponse 3";
+        
         //Ajout du controller
         QuizzViewTextController controller = loader.getController();
+        controller.setViewParameters(1, "NomJoueur", "c'est la question", mr, "La bonne réponse");
+        
+
         controller.setMainApp(this);
 }
     
@@ -108,4 +118,11 @@ public class Main extends Application {
     public ObservableList<Player> getPlayers() { //Permet la récupération dans les vues de la liste de joueurs
         return players;
     }
+
+	public Context getContext() {
+		return context;
+	}
+
+    
+    
 }

@@ -23,24 +23,44 @@ public abstract class Question {
 		this.mauvaisesReponses= new String[3];
 	}
 	
-	/**
-	 * Pose la question à l'utilisateur, attend sa réponse et renvoie 1 si la réponse est bonne, 0 sinon.
-	 * @param entry
-	 * @return
-	 */
-	public int ask(Scanner entry)
+
+	public void ask()
 	{		
-		
-		//List<QuerySolution> solutions = DBpediaQuery.execRequete("select * where {<http://fr.dbpedia.org/resource/Paris> ?r ?p}");
-	/*	Iterator it = solutions.get(0).varNames();
-		while(it.hasNext()) {
-			System.out.println(it.next());
-		}*/
-		/*for(QuerySolution it : solutions) {
-			System.out.println(it.get("p"));
-		}*/
-		return 0;
 	}
+
+	public int getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(int categorie) {
+		this.categorie = categorie;
+	}
+
+	public String getEnonce() {
+		return enonce;
+	}
+
+	public void setEnonce(String enonce) {
+		this.enonce = enonce;
+	}
+
+	public String getBonneReponse() {
+		return bonneReponse;
+	}
+
+	public void setBonneReponse(String bonneReponse) {
+		this.bonneReponse = bonneReponse;
+	}
+
+	public String[] getMauvaisesReponses() {
+		return mauvaisesReponses;
+	}
+
+	public void setMauvaisesReponses(String[] mauvaisesReponses) {
+		this.mauvaisesReponses = mauvaisesReponses;
+	}
+	
+	
 
 	
 

@@ -9,12 +9,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.QuizzViewTextController">
    <children>
-      <Label fx:id="question" layoutX="216.0" layoutY="40.0" prefHeight="31.0" prefWidth="169.0" text="QUESTION #" AnchorPane.leftAnchor="216.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="40.0">
+      <Label fx:id="question" alignment="CENTER" layoutX="1.0" layoutY="111.0" prefHeight="31.0" prefWidth="600.0" text="QUESTION #" textAlignment="CENTER" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="111.0">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
-      <Label fx:id="intitule" alignment="CENTER" contentDisplay="CENTER" layoutX="27.0" layoutY="151.0" prefHeight="17.0" prefWidth="542.0" text="Intitulé" textAlignment="CENTER" AnchorPane.leftAnchor="27.0" />
+      <Label fx:id="intitule" alignment="CENTER" contentDisplay="CENTER" layoutX="29.0" layoutY="183.0" prefHeight="17.0" prefWidth="542.0" text="Intitulé" textAlignment="CENTER" AnchorPane.leftAnchor="29.0" />
       <GridPane layoutX="83.0" layoutY="235.0" prefHeight="113.0" prefWidth="435.0" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="235.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -31,5 +31,6 @@
             <Label fx:id="rep4" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#rep4" prefHeight="17.0" prefWidth="219.0" text="Reponse 4" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
+      <Label fx:id="joueur" alignment="CENTER" contentDisplay="CENTER" layoutY="54.0" prefHeight="17.0" prefWidth="600.0" text="Joueur" textAlignment="CENTER" />
    </children>
 </AnchorPane>

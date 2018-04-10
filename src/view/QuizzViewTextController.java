@@ -2,15 +2,23 @@ package view;
 
 
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
 import application.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import model.Context;
 
 
 public class QuizzViewTextController {
 	
 	@FXML
 	private Label question;
+	@FXML
+	private Label joueur;
 	@FXML
 	private Label rep1;
 	@FXML
@@ -22,6 +30,8 @@ public class QuizzViewTextController {
 	@FXML
 	private Label intitule;
 	
+	
+	private Context context;
 
 
 
@@ -41,6 +51,8 @@ public class QuizzViewTextController {
      */
     @FXML
     private void initialize() {
+
+    	
         
         
     }
@@ -72,6 +84,28 @@ public class QuizzViewTextController {
      */
     public void setMainApp(Main main) {
         this.main = main;
+        context = main.getContext();
+    }
+	
+    public void setViewParameters(int questionNumber, String playerName,String questionIntitule, String[] mauvaisesReponses, String bonneReponse) {
+
+    	
+    	intitule.setText(questionIntitule);
+    	question.setText(Integer.toString(questionNumber));
+    	joueur.setText(playerName + ", c'est à vous !");
+    	
+    	List<String> rep = new ArrayList<>();
+    	rep.add(bonneReponse);
+    	for(int i = 0; i < mauvaisesReponses.length ; i++) {
+    		rep.add(mauvaisesReponses[i]);
+    	}
+    	Collections.shuffle(rep);
+    	
+    	rep1.setText(rep.get(0));
+    	rep2.setText(rep.get(1));
+    	rep3.setText(rep.get(2));
+    	rep4.setText(rep.get(3));
+    	
     }
 
 }

@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import org.apache.jena.query.QuerySolution;
 
+import util.Constantes;
 import util.DBpediaQuery;
 
 public class GeographieQuestion extends Question {
@@ -19,11 +20,9 @@ public class GeographieQuestion extends Question {
 	}
 
 	@Override
-	public int ask(Scanner entry) {
+	public void ask() {
 		// TODO Auto-generated method stub
 		Random rand = new Random();
-		List<String> rep = new ArrayList<>();
-		System.out.println("Question de Géographie");
 		
 		List<QuerySolution> solutions = DBpediaQuery.execRequete(
 				"prefix dbpedia-owl: <http://dbpedia.org/ontology/>\n" + 
@@ -56,7 +55,7 @@ public class GeographieQuestion extends Question {
 		pays = pays.replaceAll("_", " ");
 		
 		
-		rep.add(reponse);
+		
 		
 		solutions = DBpediaQuery.execRequete(
 				"prefix dbpedia-owl: <http://dbpedia.org/ontology/>\n" + 
@@ -70,31 +69,17 @@ public class GeographieQuestion extends Question {
 				);
 		
 		for(int i = 0; i<3; i++) {
-			rep.add(solutions.get(rand.nextInt(solutions.size()))
+			this.mauvaisesReponses[i] = solutions.get(rand.nextInt(solutions.size()))
 					.get("capitale")
 					.toString()
 					.replace("http://fr.dbpedia.org/resource/", "")
-					.replaceAll("_", " "));
+					.replaceAll("_", " ");
 		}
+		this.bonneReponse = reponse;
 		
-		Collections.shuffle(rep);
-		int valid = rep.indexOf(reponse);
+		this.enonce = "Quelle est la capitale de ce pays : "+ pays + "?";
 		
-		System.out.println("Quelle est la capitale de ce pays : " + pays + " ?");
-		for(int i = 0; i<=3;i++) {
-			System.out.println((i+1)+") "+rep.get(i));
-		}
-		String choose = entry.nextLine();
-		
-		System.out.println("Votre choix : " + choose);
-		if(Integer.parseInt(choose) == valid+1) {
-			System.out.println("BRAVO VOUS AVEZ TROUVÉ LA BONNE RÉPONSE !");
-			return 1;
-		}
-		else {
-			System.out.println("NON, LA BONNE RÉPONSE ÉTAIT : "+ reponse);
-			return 0;
-		}
+
 	}
 
 }
