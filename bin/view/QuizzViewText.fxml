@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.QuizzViewTextController">
+   <children>
+      <Label fx:id="question" layoutX="216.0" layoutY="40.0" prefHeight="31.0" prefWidth="169.0" text="QUESTION #" AnchorPane.leftAnchor="216.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="40.0">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Label fx:id="intitule" alignment="CENTER" contentDisplay="CENTER" layoutX="27.0" layoutY="151.0" prefHeight="17.0" prefWidth="542.0" text="Intitulé" textAlignment="CENTER" AnchorPane.leftAnchor="27.0" />
+      <GridPane layoutX="83.0" layoutY="235.0" prefHeight="113.0" prefWidth="435.0" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="235.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="55.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="rep1" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#rep1" prefHeight="17.0" prefWidth="217.0" text="Reponse 1" textAlignment="CENTER" />
+            <Label fx:id="rep2" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#rep2" prefHeight="17.0" prefWidth="219.0" text="Reponse 2" textAlignment="CENTER" GridPane.rowIndex="1" />
+            <Label fx:id="rep3" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#rep3" prefHeight="17.0" prefWidth="217.0" text="Reponse 3" textAlignment="CENTER" GridPane.columnIndex="1" />
+            <Label fx:id="rep4" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#rep4" prefHeight="17.0" prefWidth="219.0" text="Reponse 4" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

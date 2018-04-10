@@ -7,11 +7,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Player;
 import view.FirstViewController;
+import view.QuizzViewTextController;
 
 public class Main extends Application {
 
@@ -19,7 +21,7 @@ public class Main extends Application {
     private BorderPane rootLayout;
     private ObservableList<Player> players = FXCollections.observableArrayList();
     
-    public Main() {
+    public Main() { //initialisation du joueur 1
     	players.add(new Player("Joueur 1"));
     }
 
@@ -29,8 +31,7 @@ public class Main extends Application {
         this.primaryStage.setTitle("EnsiQuizz");
 
         initRootLayout();
-
-        showTest();
+        showPlayers();
     }
 
     /**
@@ -53,24 +54,42 @@ public class Main extends Application {
     }
 
 
-    public void showTest() {
+    public void showPlayers() {
         try {
-            // Load person overview.
+            // On charge la vue des joueurs
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getClassLoader().getResource("view/FirstView.fxml"));
+
             
             AnchorPane testOverView = (AnchorPane) loader.load();
-            
-            // Set person overview into the center of root layout.
+            // Ajout de la fenêtre de joueur dans la scene principale
             rootLayout.setCenter(testOverView);
             
-
+            //Ajout du controller
             FirstViewController controller = loader.getController();
             controller.setMainApp(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    
+    public void startGameLayout() throws IOException {
+        // On charge la vue des joueurs
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getClassLoader().getResource("view/QuizzViewText.fxml"));
+
+        
+        AnchorPane testOverView = (AnchorPane) loader.load();
+        // Ajout de la fenêtre de joueur dans la scene principale
+        rootLayout.setCenter(testOverView);
+        
+        //Ajout du controller
+        QuizzViewTextController controller = loader.getController();
+        controller.setMainApp(this);
+}
+    
+    
+
 
     /**
      * Returns the main stage.
@@ -86,7 +105,7 @@ public class Main extends Application {
      
     }
     
-    public ObservableList<Player> getPlayers() {
+    public ObservableList<Player> getPlayers() { //Permet la récupération dans les vues de la liste de joueurs
         return players;
     }
 }

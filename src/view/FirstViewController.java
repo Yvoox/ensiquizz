@@ -1,5 +1,7 @@
 package view;
 
+import java.io.IOException;
+
 import application.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -12,8 +14,6 @@ public class FirstViewController {
     private TableView<Player> playerTable;
     @FXML
     private TableColumn<Player, String> nameColumn;
-    @FXML
-    private TextField newPlayer;
 
 
     // Reference to the main application.
@@ -52,6 +52,12 @@ public class FirstViewController {
     	if(playerTable.getItems().size() < 4) {
         playerTable.getItems().add(new Player("Joueur"+(playerTable.getItems().size()+1)));
     	}
+    }
+    
+    @FXML
+    private void startGame() throws IOException {
+    	//permet de lancer une partie
+    	main.startGameLayout();
     }
 
     /**
