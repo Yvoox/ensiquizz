@@ -1,10 +1,15 @@
 package application;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
@@ -13,116 +18,143 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Context;
 import model.Player;
+import model.Question;
+import model.QuestionFactory;
+import util.Constantes;
 import view.FirstViewController;
 import view.QuizzViewTextController;
 
 public class Main extends Application {
 
-    private Stage primaryStage;
-    private BorderPane rootLayout;
-    private ObservableList<Player> players = FXCollections.observableArrayList();
-    private Context context;
-    
-    public Main() { //initialisation du joueur 1
-    	players.add(new Player("Joueur 1"));
-    }
+	private Stage primaryStage;
+	private BorderPane rootLayout;
+	private ObservableList<Player> players = FXCollections.observableArrayList();
+	private Context context;
 
-    @Override
-    public void start(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("EnsiQuizz");
+	public Main() { //initialisation du joueur 1
+		players.add(new Player("Joueur 1"));
+	}
 
-        initRootLayout();
-        showPlayers();
-    }
+	@Override
+	public void start(Stage primaryStage) {
+		this.primaryStage = primaryStage;
+		this.primaryStage.setTitle("EnsiQuizz");
 
-    /**
-     * Initializes the root layout.
-     */
-    public void initRootLayout() {
-        try {
-            // Load root layout from fxml file.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getClassLoader().getResource("view/RootLayout.fxml"));
-            rootLayout = (BorderPane) loader.load();
+		initRootLayout();
+		showPlayers();
+	}
 
-            // Show the scene containing the root layout.
-            Scene scene = new Scene(rootLayout);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+	/**
+	 * Initializes the root layout.
+	 */
+	public void initRootLayout() {
+		try {
+			// Load root layout from fxml file.
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getClassLoader().getResource("view/RootLayout.fxml"));
+			rootLayout = (BorderPane) loader.load();
 
-
-    public void showPlayers() {
-        try {
-            // On charge la vue des joueurs
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getClassLoader().getResource("view/FirstView.fxml"));
-
-            
-            AnchorPane testOverView = (AnchorPane) loader.load();
-            // Ajout de la fenêtre de joueur dans la scene principale
-            rootLayout.setCenter(testOverView);
-            
-            //Ajout du controller
-            FirstViewController controller = loader.getController();
-            controller.setMainApp(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public void startGameLayout() throws IOException {
-        // On charge la vue des joueurs
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getClassLoader().getResource("view/QuizzViewText.fxml"));
-
-        
-        AnchorPane testOverView = (AnchorPane) loader.load();
-        // Ajout de la fenêtre de joueur dans la scene principale
-        rootLayout.setCenter(testOverView);
-        
-        String[] mr = new String[3];
-        mr[0] = "Mauvaise reponse 1";
-        mr[1] = "Mauvaise reponse 2";
-        mr[2] = "Mauvaise reponse 3";
-        
-        //Ajout du controller
-        QuizzViewTextController controller = loader.getController();
-        controller.setViewParameters(1, "NomJoueur", "c'est la question", mr, "La bonne réponse");
-        
-
-        controller.setMainApp(this);
-}
-    
-    
+			// Show the scene containing the root layout.
+			Scene scene = new Scene(rootLayout);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 
-    /**
-     * Returns the main stage.
-     * @return
-     */
-    public Stage getPrimaryStage() {
-        return primaryStage;
-    }
+	public void showPlayers() {
+		try {
+			// On charge la vue des joueurs
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getClassLoader().getResource("view/FirstView.fxml"));
 
-    public static void main(String[] args) {
-    	
-        launch(args);
-     
-    }
-    
-    public ObservableList<Player> getPlayers() { //Permet la récupération dans les vues de la liste de joueurs
-        return players;
-    }
+
+			AnchorPane testOverView = (AnchorPane) loader.load();
+			// Ajout de la fenêtre de joueur dans la scene principale
+			rootLayout.setCenter(testOverView);
+
+			//Ajout du controller
+			FirstViewController controller = loader.getController();
+			controller.setMainApp(this);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void startGameLayout() throws IOException, InterruptedException {
+		// On charge la vue des joueurs
+		Timer timer;
+		int currentQuestion =0;
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getClassLoader().getResource("view/QuizzViewText.fxml"));
+
+
+		AnchorPane testOverView = (AnchorPane) loader.load();
+		// Ajout de la fenêtre de joueur dans la scene principale
+		rootLayout.setCenter(testOverView);
+
+
+
+		while(currentQuestion<Constantes.NB_QUESTIONS)
+		{
+			currentQuestion++;	
+			for(Player curr : players) {
+
+
+				Question question = QuestionFactory.createQuestion();    
+				//Ajout du controller
+				QuizzViewTextController controller = loader.getController();
+				question.ask();
+				controller.setViewParameters(
+						currentQuestion
+						, curr
+						, question.getEnonce()
+						, question.getMauvaisesReponses()
+						, question.getBonneReponse()
+						);
+
+
+
+
+			}
+		}
+		//findWinner(players);
+
+
+
+
+
+
+	}
+
+
+
+
+	/**
+	 * Returns the main stage.
+	 * @return
+	 */
+	public Stage getPrimaryStage() {
+		return primaryStage;
+	}
+
+	public static void main(String[] args) {
+
+		launch(args);
+
+	}
+
+	public ObservableList<Player> getPlayers() { //Permet la récupération dans les vues de la liste de joueurs
+		return players;
+	}
 
 	public Context getContext() {
 		return context;
 	}
 
-    
-    
+
+
+
 }

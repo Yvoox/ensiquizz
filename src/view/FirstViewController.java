@@ -55,7 +55,7 @@ public class FirstViewController {
     }
     
     @FXML
-    private void startGame() throws IOException {
+    private void startGame() throws IOException, InterruptedException {
     	//permet de lancer une partie
     	main.startGameLayout();
     }

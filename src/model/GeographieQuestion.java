@@ -78,7 +78,6 @@ public class GeographieQuestion extends Question {
 		this.bonneReponse = reponse;
 		
 		this.enonce = "Quelle est la capitale de ce pays : "+ pays + "?";
-		
 
 	}
 
