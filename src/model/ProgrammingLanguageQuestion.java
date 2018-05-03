@@ -3,8 +3,8 @@ package model;
 import org.apache.jena.query.QuerySolution;
 import util.DBpediaQuery;
 
+import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 public class ProgrammingLanguageQuestion extends Question {
 
@@ -35,31 +35,61 @@ public class ProgrammingLanguageQuestion extends Question {
         switch (questionType) {
             // Trouver le nom du langage à partir de son créateur
             case DESIGNER:
-                enonce = "Quel est le créateur du langage de programmation : " + reponse.language;
-                bonneReponse = reponse.designer;
-                // On choisit 3 mauvaises réponses dans la liste des solutions
-                for (int i = 0; i < mauvaisesReponses.length; i++) {
-                    mauvaisesReponses[i] = creerReponse(solutions).designer;
-                }
+                creerQuestionCreateur(solutions, reponse);
                 break;
             // Idem quand dans le premier cas mais, il faut cette fois-ci trouver le nom du langage
             case DESIGNER_REVERSE:
-                enonce = "Quel langage de programmation à créé " + reponse.designer + " ?";
-                bonneReponse = reponse.language;
-                // On choisit 3 mauvaises réponses dans la liste des solutions
-                for (int i = 0; i < mauvaisesReponses.length; i++) {
-                    mauvaisesReponses[i] = creerReponse(solutions).language;
-                }
+                creerQuestionLangage(solutions, reponse);
                 break;
             // Question "Quel est le paradigme du langage de programmation xxx"
             case PARADIGM:
-                enonce = "Quel est le paradigme du langage de programmation " + reponse.language;
-                bonneReponse = reponse.paradigm;
-                // On choisit 3 mauvaises réponses dans la liste des solutions
-                for (int i = 0; i < mauvaisesReponses.length; i++) {
-                    mauvaisesReponses[i] = creerReponse(solutions).paradigm;
-                }
+                creerQuestionParadigme(solutions, reponse);
                 break;
+        }
+    }
+
+    private void creerQuestionParadigme(List<QuerySolution> solutions, Reponse reponse) {
+        enonce = "Quel est le paradigme du langage de programmation " + reponse.language;
+        bonneReponse = reponse.paradigm;
+        // On choisit 3 mauvaises réponses dans la liste des solutions
+        for (int i = 0; i < mauvaisesReponses.length; i++) {
+            String rep;
+            // Pour éviter les doublons, on regarde si la réponse choisie
+            // n'est pas déjà dans la liste des réponses.
+            do {
+                rep = creerReponse(solutions).paradigm;
+            } while (Arrays.asList(mauvaisesReponses).contains(rep) || bonneReponse.equals(rep));
+            mauvaisesReponses[i] = rep;
+        }
+    }
+
+    private void creerQuestionLangage(List<QuerySolution> solutions, Reponse reponse) {
+        enonce = "Quel langage de programmation à créé " + reponse.designer + " ?";
+        bonneReponse = reponse.language;
+        // On choisit 3 mauvaises réponses dans la liste des solutions
+        for (int i = 0; i < mauvaisesReponses.length; i++) {
+            String rep;
+            // Pour éviter les doublons, on regarde si la réponse choisie
+            // n'est pas déjà dans la liste des réponses.
+            do {
+                rep = creerReponse(solutions).language;
+            } while (Arrays.asList(mauvaisesReponses).contains(rep) || bonneReponse.equals(rep));
+            mauvaisesReponses[i] = rep;
+        }
+    }
+
+    private void creerQuestionCreateur(List<QuerySolution> solutions, Reponse reponse) {
+        enonce = "Quel est le créateur du langage de programmation : " + reponse.language;
+        bonneReponse = reponse.designer;
+        // On choisit 3 mauvaises réponses dans la liste des solutions
+        for (int i = 0; i < mauvaisesReponses.length; i++) {
+            String rep;
+            // Pour éviter les doublons, on regarde si la réponse choisie
+            // n'est pas déjà dans la liste des réponses.
+            do {
+                rep = creerReponse(solutions).designer;
+            } while (Arrays.asList(mauvaisesReponses).contains(rep) || bonneReponse.equals(rep));
+            mauvaisesReponses[i] = rep;
         }
     }
 

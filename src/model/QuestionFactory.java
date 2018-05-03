@@ -13,8 +13,7 @@ public class QuestionFactory {
      */
     public static Question createQuestion() {
         Random rand = new Random();
-        //switch (rand.nextInt(Constantes.CATEGORIES.length)) {
-        switch (Constantes.PROTOCOLE) {
+        switch (rand.nextInt(Constantes.CATEGORIES.length)) {
             case Constantes.GEOGRAPHIE:
                 return new GeographieQuestion(Constantes.GEOGRAPHIE);
             case Constantes.PROGRAMMATION:

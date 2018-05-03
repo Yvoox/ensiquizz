@@ -3,6 +3,7 @@ package model;
 import org.apache.jena.query.QuerySolution;
 import util.DBpediaQuery;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class RaceChienQuestion extends Question {
@@ -28,7 +29,13 @@ public class RaceChienQuestion extends Question {
         enonce = "À quelle race appartient ce chien ?";
         bonneReponse = reponse.nomRace;
         for (int i = 0; i < mauvaisesReponses.length; i++) {
-            mauvaisesReponses[i] = creerReponse(solutions).nomRace;
+            String nomRace;
+            // Pour éviter les doublons, on regarde si la réponse choisie
+            // n'est pas déjà dans la liste des réponses.
+            do {
+                nomRace = creerReponse(solutions).nomRace;
+            } while (Arrays.asList(mauvaisesReponses).contains(nomRace) || bonneReponse.equals(nomRace));
+            mauvaisesReponses[i] = nomRace;
         }
 
         imgUrl = reponse.imgUrl;
