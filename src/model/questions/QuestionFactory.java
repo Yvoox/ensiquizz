@@ -1,4 +1,4 @@
-package model;
+package model.questions;
 
 import util.Constantes;
 
@@ -15,13 +15,13 @@ public class QuestionFactory {
         Random rand = new Random();
         switch (rand.nextInt(Constantes.CATEGORIES.length)) {
             case Constantes.GEOGRAPHIE:
-                return new GeographieQuestion(Constantes.GEOGRAPHIE);
+                return new GeographieQuestion();
             case Constantes.PROGRAMMATION:
-                return new ProgrammingLanguageQuestion(Constantes.PROGRAMMATION);
+                return new LangageDeProgrammationQuestion();
             case Constantes.RACE_CHIEN:
-                return new RaceChienQuestion(Constantes.RACE_CHIEN);
+                return new RaceChienQuestion();
             case Constantes.PROTOCOLE:
-                return new ProtocoleReseauQuestion(Constantes.PROTOCOLE);
+                return new ProtocoleReseauQuestion();
             default:
                 // Ne devrait pas arriver ici
                 return null;

@@ -1,15 +1,16 @@
-package model;
+package model.questions;
 
 import org.apache.jena.query.QuerySolution;
+import util.Constantes;
 import util.DBpediaQuery;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class ProgrammingLanguageQuestion extends Question {
+public class LangageDeProgrammationQuestion extends Question {
 
-    protected ProgrammingLanguageQuestion(int categorie) {
-        super(categorie);
+    LangageDeProgrammationQuestion() {
+        super(Constantes.PROGRAMMATION);
     }
 
     @Override
@@ -102,8 +103,15 @@ public class ProgrammingLanguageQuestion extends Question {
         return new Reponse(language, designer, paradigm);
     }
 
+    /**
+     * TODO : documentation
+     */
+    private enum QuestionType {
+        DESIGNER, PARADIGM, DESIGNER_REVERSE
+    }
+
     private final class Reponse {
-        private String language;
+        private final String language;
         private String designer;
         private String paradigm;
 
@@ -112,12 +120,5 @@ public class ProgrammingLanguageQuestion extends Question {
             this.designer = designer;
             this.paradigm = paradigm;
         }
-    }
-
-    /**
-     * TODO : documentation
-     */
-    private enum QuestionType {
-        DESIGNER, PARADIGM, DESIGNER_REVERSE
     }
 }

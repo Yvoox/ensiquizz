@@ -1,6 +1,7 @@
-package model;
+package model.questions;
 
 import org.apache.jena.query.QuerySolution;
+import util.Constantes;
 import util.DBpediaQuery;
 
 import java.util.List;
@@ -8,8 +9,8 @@ import java.util.Random;
 
 public class GeographieQuestion extends Question {
 
-	protected GeographieQuestion(int categorie) {
-		super(categorie);
+	GeographieQuestion() {
+		super(Constantes.GEOGRAPHIE);
 	}
 
 	@Override

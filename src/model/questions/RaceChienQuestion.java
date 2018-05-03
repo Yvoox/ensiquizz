@@ -1,6 +1,7 @@
-package model;
+package model.questions;
 
 import org.apache.jena.query.QuerySolution;
+import util.Constantes;
 import util.DBpediaQuery;
 
 import java.util.Arrays;
@@ -8,8 +9,8 @@ import java.util.List;
 
 public class RaceChienQuestion extends Question {
 
-    protected RaceChienQuestion(int categorie) {
-        super(categorie);
+    RaceChienQuestion() {
+        super(Constantes.RACE_CHIEN);
     }
 
     @Override

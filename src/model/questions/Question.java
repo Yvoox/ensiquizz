@@ -1,4 +1,4 @@
-package model;
+package model.questions;
 
 import util.Constantes;
 
@@ -6,20 +6,19 @@ import java.util.Random;
 
 public abstract class Question {
 
-    protected Random rand;
-    protected int categorie;
-    protected String imgUrl;
-    protected String enonce;
-    protected String bonneReponse;
-    protected String[] mauvaisesReponses;
+    private final int categorie;
+    final Random rand;
+    String imgUrl;
+    String enonce;
+    String bonneReponse;
+    final String[] mauvaisesReponses;
 
-    protected Question(int categorie) {
+    Question(int categorie) {
         this.categorie = categorie;
         this.mauvaisesReponses = new String[Constantes.NB_REPONSES - 1];
         this.imgUrl = null;
         this.rand = new Random();
     }
-
 
     public abstract void ask();
 
@@ -46,6 +45,5 @@ public abstract class Question {
     public boolean hasImage() {
         return this.imgUrl != null;
     }
-
 
 }

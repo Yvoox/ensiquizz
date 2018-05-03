@@ -1,7 +1,7 @@
-package model;
+package model.questions;
 
 import org.apache.jena.query.QuerySolution;
-import org.apache.jena.rdf.model.Resource;
+import util.Constantes;
 import util.DBpediaQuery;
 
 import java.util.Arrays;
@@ -9,8 +9,8 @@ import java.util.List;
 
 public class ProtocoleReseauQuestion extends Question {
 
-    protected ProtocoleReseauQuestion(int categorie) {
-        super(categorie);
+    ProtocoleReseauQuestion() {
+        super(Constantes.PROTOCOLE);
     }
 
     @Override
