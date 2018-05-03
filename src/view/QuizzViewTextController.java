@@ -1,10 +1,21 @@
 package view;
 
-
-
+import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import javax.imageio.ImageIO;
+
+import org.apache.http.impl.io.SocketOutputBuffer;
 
 import application.Main;
 import javafx.animation.Animation;
@@ -28,7 +39,7 @@ public class QuizzViewTextController {
 	private String bonneRep;
 	Timeline timer;
 	Timeline progressBarTimer;
-	
+
 	@FXML
 	private ProgressBar progressBar;
 	@FXML
@@ -82,7 +93,8 @@ public class QuizzViewTextController {
 		progressBar.setVisible(true);
 		accueil.setVisible(false);
 		image.setVisible(false);
-		
+
+
 
 	}
 
@@ -213,7 +225,7 @@ public class QuizzViewTextController {
 			main.getPartie().getJoueurCourant().endGame(0);
 		}
 	}
-	
+
 	@FXML
 	private void accueil() {
 		main.showPlayers();
@@ -225,7 +237,7 @@ public class QuizzViewTextController {
 	 * Permet de passer au joueur ou à la question suivante
 	 * Permet également le chargement de l'interface de gagnant s'il y en a un
 	 */
-	private void suivant()  {
+	private void suivant() throws FileNotFoundException  {
 		progressBarTimer.stop();
 		timer.stop();
 		if(main.getPartie().joue() != null)
@@ -249,7 +261,7 @@ public class QuizzViewTextController {
 
 	/**
 	 * Is called by the main application to give a reference back to itself.
-	 * 
+	 *
 	 * @param mainApp
 	 */
 	public void setMainApp(Main main) {
@@ -262,22 +274,31 @@ public class QuizzViewTextController {
 	 * Prépare également la liste de réponses à partir de la bonne et des mauvaises
 	 * Gère le temps pour chaque question
 	 */
-	public void setViewParameters(int questionNumber, String questionIntitule, String[] mauvaisesReponses, String bonneReponse) {
+	public void setViewParameters(int questionNumber, String questionIntitule, String[] mauvaisesReponses, String bonneReponse) throws FileNotFoundException {
 
 		progressBarReset();
+
+		if(main.getPartie().getQuestionCourante().hasImage()) {
+			String url = main.getPartie().getQuestionCourante().getImageUrl();
+			//Le navigateur ne faisant pas la redirection, on doit l'ajouter manuellement
+			url = url.replace("http", "https");
+			Image im = new Image(url);
+			image.setImage(im);
+			image.setVisible(true);
+		}
 
 		progressBarTimer = new Timeline(new KeyFrame(
 		        Duration.millis(1000),
 		        actionEvent -> progressBarAdd()));
 		progressBarTimer.setCycleCount(Animation.INDEFINITE);
 		progressBarTimer.play();
-		
+
 		timer = new Timeline(new KeyFrame(
 		        Duration.millis(10000),
 		        actionEvent -> timeOut()));
 		timer.play();
-		
-		
+
+
 		intitule.setText(questionIntitule);
 		question.setText(Integer.toString(questionNumber));
 		joueur.setText(main.getPartie().getJoueurCourant().getName().get() + ", c'est à vous !");
@@ -320,7 +341,7 @@ public class QuizzViewTextController {
 		}
 		intitule.setText(classement);
 	}
-	
+
 	public void timeOut() {
 		timer.stop();
 		progressBarTimer.stop();
@@ -333,13 +354,13 @@ public class QuizzViewTextController {
 		rep4.setVisible(false);
 		image.setVisible(false);
 		suivant.setVisible(true);
-		main.getPartie().getJoueurCourant().endGame(0);		
+		main.getPartie().getJoueurCourant().endGame(0);
 	}
-	
+
 	public void progressBarAdd() {
 		progressBar.setProgress(progressBar.getProgress()+0.1);
 	}
-	
+
 	public void progressBarReset() {
 		progressBar.setProgress(0);
 	}

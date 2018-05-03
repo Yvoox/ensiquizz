@@ -26,7 +26,7 @@ public class Partie {
 	public void retirerJoueur(int index) {
 		joueurs.remove(index);
 	}
-	
+
 	/*
 	 * Méthode start
 	 * Permet de générer une partie dans un état initial
@@ -77,12 +77,9 @@ public class Partie {
 	}
 
 	private boolean verificationFinPartie() {
-		//if(compteurQuestion < Constantes.NB_QUESTIONS) {
-
-			if(compteurQuestion < 3) {
+		if(compteurQuestion < Constantes.NB_QUESTIONS) {
 			return false;
-		}
-		else return true;
+		} else return true;
 	}
 
 	/*
@@ -97,7 +94,7 @@ public class Partie {
 			if(it.getScore().get() > scoreMax) {
 				scoreMax = it.getScore().get();
 				winner = it;
-				
+
 			}
 		}
 		return winner;
