@@ -13,13 +13,16 @@ public class QuestionFactory {
      */
     public static Question createQuestion() {
         Random rand = new Random();
-        switch (rand.nextInt(Constantes.CATEGORIES.length)) {
+        //switch (rand.nextInt(Constantes.CATEGORIES.length)) {
+        switch (Constantes.PROTOCOLE) {
             case Constantes.GEOGRAPHIE:
                 return new GeographieQuestion(Constantes.GEOGRAPHIE);
             case Constantes.PROGRAMMATION:
                 return new ProgrammingLanguageQuestion(Constantes.PROGRAMMATION);
             case Constantes.RACE_CHIEN:
                 return new RaceChienQuestion(Constantes.RACE_CHIEN);
+            case Constantes.PROTOCOLE:
+                return new ProtocoleReseauQuestion(Constantes.PROTOCOLE);
             default:
                 // Ne devrait pas arriver ici
                 return null;
