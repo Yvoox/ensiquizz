@@ -5,6 +5,7 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -23,7 +24,7 @@
                   </Label>
                   <Button id="add" layoutX="12.0" layoutY="276.0" mnemonicParsing="false" onAction="#add" text="Ajouter" AnchorPane.bottomAnchor="95.0" AnchorPane.leftAnchor="10.0" />
                   <Button id="del" layoutX="83.0" layoutY="276.0" mnemonicParsing="false" onAction="#delete" text="Supprimer" AnchorPane.bottomAnchor="95.0" AnchorPane.rightAnchor="5.0" />
-                  <TableView fx:id="playerTable" layoutX="12.0" layoutY="53.0" prefHeight="200.0" prefWidth="152.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="53.0">
+                  <TableView fx:id="playerTable" layoutX="12.0" layoutY="53.0" onMouseClicked="#prepareChangeNom" prefHeight="200.0" prefWidth="152.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="53.0">
                     <columns>
                       <TableColumn fx:id="nameColumn" maxWidth="1.7976931348623157E308" prefWidth="151.0" text="Nom :" />
                     </columns>
@@ -31,6 +32,8 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
+                  <TextField fx:id="nom" layoutX="66.0" layoutY="350.0" onKeyPressed="#changeNom" prefHeight="32.0" prefWidth="146.0" />
+                  <Label fx:id="labelNom" layoutX="15.0" layoutY="357.0" text="Nom :" />
                </children>
             </AnchorPane>
           <AnchorPane id="pane" minHeight="0.0" minWidth="0.0" prefHeight="298.0" prefWidth="351.0">

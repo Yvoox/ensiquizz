@@ -32,5 +32,9 @@ public class Player {
 	public void resetScore() {
 		score.set(0);
 	}
+	
+	public void setName(String name) {
+		this.name = new SimpleStringProperty(name);
+	}
 
 }
