@@ -21,7 +21,6 @@ import model.Player;
 
 public class QuizzViewTextController {
 	private String bonneRep;
-	private Player currJoueur;
 
 	@FXML
 	private Label question;
@@ -39,9 +38,10 @@ public class QuizzViewTextController {
 	private Label intitule;
 	@FXML
 	private Button suivant;
+	@FXML
+	private Button accueil;
 
 
-	private Context context;
 
 
 
@@ -67,17 +67,19 @@ public class QuizzViewTextController {
 		rep2.setVisible(true);
 		rep3.setVisible(true);
 		rep4.setVisible(true);
-
-
-
-
-
+		accueil.setVisible(false);
 	}
 
 	@FXML
+	/*
+	 * Pour chaque Methode rep#
+	 * Recuperation de la réponse
+	 * On recherche si la réponse est juste ou fausse
+	 * Ajouter le point sur le joueur ayant répondu
+	 */
 	private void rep1() {
 		if(rep1.getText().equals(bonneRep)) {
-			joueur.setText("Bravo "+currJoueur.getName().get()+" !");
+			joueur.setText("Bravo "+main.getPartie().getJoueurCourant().getName().get()+" !");
 			question.setText("Bonne réponse !");
 			intitule.setVisible(false);
 			rep1.setVisible(false);
@@ -85,18 +87,18 @@ public class QuizzViewTextController {
 			rep3.setVisible(false);
 			rep4.setVisible(false);
 			suivant.setVisible(true);
-			currJoueur.endGame(1);
+			main.getPartie().getJoueurCourant().endGame(1);
 		}
 		else {
-			joueur.setText("Désolé "+currJoueur.getName().get()+" !");
+			joueur.setText("Désolé "+main.getPartie().getJoueurCourant().getName().get()+" !");
 			question.setText("Mauvaise réponse !");
-			intitule.setVisible(false);
+			intitule.setText("La réponse était : "+bonneRep);
 			rep1.setVisible(false);
 			rep2.setVisible(false);
 			rep3.setVisible(false);
 			rep4.setVisible(false);
 			suivant.setVisible(true);
-			currJoueur.endGame(0);
+			main.getPartie().getJoueurCourant().endGame(0);
 		}
 
 	}
@@ -104,7 +106,7 @@ public class QuizzViewTextController {
 	@FXML
 	private void rep2() {
 		if(rep2.getText().equals(bonneRep)) {
-			joueur.setText("Bravo "+currJoueur.getName().get()+" !");
+			joueur.setText("Bravo "+main.getPartie().getJoueurCourant().getName().get()+" !");
 			question.setText("Bonne réponse !");
 			intitule.setVisible(false);
 			rep1.setVisible(false);
@@ -112,25 +114,25 @@ public class QuizzViewTextController {
 			rep3.setVisible(false);
 			rep4.setVisible(false);
 			suivant.setVisible(true);
-			currJoueur.endGame(1);
+			main.getPartie().getJoueurCourant().endGame(1);
 		}
 		else {
-			joueur.setText("Désolé "+currJoueur.getName().get()+" !");
+			joueur.setText("Désolé "+main.getPartie().getJoueurCourant().getName().get()+" !");
 			question.setText("Mauvaise réponse !");
-			intitule.setVisible(false);
+			intitule.setText("La réponse était : "+bonneRep);
 			rep1.setVisible(false);
 			rep2.setVisible(false);
 			rep3.setVisible(false);
 			rep4.setVisible(false);
 			suivant.setVisible(true);
-			currJoueur.endGame(0);
+			main.getPartie().getJoueurCourant().endGame(0);
 		}
 	}
 
 	@FXML
 	private void rep3()  {
 		if(rep3.getText().equals(bonneRep)) {
-			joueur.setText("Bravo "+currJoueur.getName().get()+" !");
+			joueur.setText("Bravo "+main.getPartie().getJoueurCourant().getName().get()+" !");
 			question.setText("Bonne réponse !");
 			intitule.setVisible(false);
 			rep1.setVisible(false);
@@ -138,25 +140,25 @@ public class QuizzViewTextController {
 			rep3.setVisible(false);
 			rep4.setVisible(false);
 			suivant.setVisible(true);
-			currJoueur.endGame(1);
+			main.getPartie().getJoueurCourant().endGame(1);
 		}
 		else {
-			joueur.setText("Désolé "+currJoueur.getName().get()+" !");
+			joueur.setText("Désolé "+main.getPartie().getJoueurCourant().getName().get()+" !");
 			question.setText("Mauvaise réponse !");
-			intitule.setVisible(false);
+			intitule.setText("La réponse était : "+bonneRep);
 			rep1.setVisible(false);
 			rep2.setVisible(false);
 			rep3.setVisible(false);
 			rep4.setVisible(false);
 			suivant.setVisible(true);
-			currJoueur.endGame(0);
+			main.getPartie().getJoueurCourant().endGame(0);
 		}
 	}
 
 	@FXML
 	private void rep4()  {
 		if(rep4.getText().equals(bonneRep)) {
-			joueur.setText("Bravo "+currJoueur.getName().get()+" !");
+			joueur.setText("Bravo "+main.getPartie().getJoueurCourant().getName().get()+" !");
 			question.setText("Bonne réponse !");
 			intitule.setVisible(false);
 			rep1.setVisible(false);
@@ -164,31 +166,38 @@ public class QuizzViewTextController {
 			rep3.setVisible(false);
 			rep4.setVisible(false);
 			suivant.setVisible(true);
-			currJoueur.endGame(1);
+			main.getPartie().getJoueurCourant().endGame(1);
 		}
 		else {
-			joueur.setText("Désolé "+currJoueur.getName().get()+" !");
+			joueur.setText("Désolé "+main.getPartie().getJoueurCourant().getName().get()+" !");
 			question.setText("Mauvaise réponse !");
-			intitule.setVisible(false);
+			intitule.setText("La réponse était : "+bonneRep);
 			rep1.setVisible(false);
 			rep2.setVisible(false);
 			rep3.setVisible(false);
 			rep4.setVisible(false);
 			suivant.setVisible(true);
-			currJoueur.endGame(0);
+			main.getPartie().getJoueurCourant().endGame(0);
 		}
+	}
+	
+	@FXML
+	private void accueil() {
+		main.showPlayers();
 	}
 
 	@FXML
+	/*
+	 * Methode suivant
+	 * Permet de passer au joueur ou à la question suivante
+	 * Permet également le chargement de l'interface de gagnant s'il y en a un
+	 */
 	private void suivant()  {
-		if(main == null) System.out.println("Main null");
-		if(main.getPartie() == null) System.out.println("Partie null");
 		if(main.getPartie().joue() != null)
 			setViewEndGame();
 		else {
 			setViewParameters(
 					main.getPartie().getNumeroQuestion()
-					,main.getPartie().getJoueurCourant()
 					, main.getPartie().getQuestionCourante().getEnonce()
 					, main.getPartie().getQuestionCourante().getMauvaisesReponses()
 					, main.getPartie().getQuestionCourante().getBonneReponse()
@@ -209,16 +218,18 @@ public class QuizzViewTextController {
 	 */
 	public void setMainApp(Main main) {
 		this.main = main;
-		context = main.getContext();
 	}
 
-	public void setViewParameters(int questionNumber,Player joueurCourant, String questionIntitule, String[] mauvaisesReponses, String bonneReponse) {
+	/*
+	 * Methode setViewParameters
+	 * Permet l'actualisation des éléments visuels
+	 * Prépare également la liste de réponses à partir de la bonne et des mauvaises
+	 */
+	public void setViewParameters(int questionNumber, String questionIntitule, String[] mauvaisesReponses, String bonneReponse) {
 
-		this.currJoueur = joueurCourant;
-		//currJoueur = new Player("Jo");
 		intitule.setText(questionIntitule);
 		question.setText(Integer.toString(questionNumber));
-		joueur.setText(currJoueur.getName().get() + ", c'est à vous !");
+		joueur.setText(main.getPartie().getJoueurCourant().getName().get() + ", c'est à vous !");
 
 		List<String> rep = new ArrayList<>();
 		this.bonneRep = bonneReponse;
@@ -235,15 +246,26 @@ public class QuizzViewTextController {
 
 	}
 
+	/*
+	 * Methode setViewEndGame
+	 * Permet l'actualisation de l'interface graphique pour renseigner le joueur gagnant
+	 */
 	public void setViewEndGame() {
-		suivant.setText("Accueil");
-		intitule.setVisible(false);
+		suivant.setVisible(false);
 		rep1.setVisible(false);
 		rep2.setVisible(false);
 		rep3.setVisible(false);
 		rep4.setVisible(false);
 		joueur.setVisible(false);
-		question.setText("Bravo Joueur : " + main.getPartie().estGagnant().getName().get() + " a gagné avec "+main.getPartie().estGagnant().getScore().get()+" points");
+		intitule.setVisible(true);
+		accueil.setVisible(true);
+		String classement = "Classement : ";
+		question.setText("Bravo, " + main.getPartie().estGagnant().getName().get() + " a gagné avec "+main.getPartie().estGagnant().getScore().get()+" points");
+		for(Player it : main.getPartie().getJoueurs()) {
+			if(!it.equals(main.getPartie().estGagnant()))
+			classement+=it.getName().get()+" avec "+it.getScore().get()+" points ";
+		}
+		intitule.setText(classement);
 	}
 
 

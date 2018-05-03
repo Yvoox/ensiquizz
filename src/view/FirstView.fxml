@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="400.0" minWidth="600.0" prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FirstViewController">
+<AnchorPane minHeight="400.0" minWidth="600.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FirstViewController">
    <children>
       <SplitPane dividerPositions="0.29797979797979796" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -35,12 +35,12 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="298.0" prefWidth="351.0">
                <children>
-                  <ImageView fitHeight="175.0" fitWidth="211.0" layoutX="121.0" layoutY="32.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="121.0" AnchorPane.topAnchor="32.0">
+                  <ImageView fitHeight="609.0" fitWidth="591.0" layoutX="-2.0" layoutY="-1.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="-2.0" AnchorPane.topAnchor="-1.0">
                      <image>
                         <Image url="@../../img/ensiquizz_logo.png" />
                      </image>
                   </ImageView>
-                  <Button layoutX="142.0" layoutY="240.0" mnemonicParsing="false" onAction="#startGame" text="Lancer une partie !" AnchorPane.bottomAnchor="131.0" AnchorPane.leftAnchor="142.0" AnchorPane.rightAnchor="141.0" />
+                  <Button layoutX="96.0" layoutY="514.0" mnemonicParsing="false" onAction="#startGame" prefHeight="15.0" prefWidth="392.0" text="Lancer une partie !" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="96.0" AnchorPane.rightAnchor="68.0" />
                </children></AnchorPane>
         </items>
       </SplitPane>

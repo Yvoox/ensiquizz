@@ -89,11 +89,8 @@ public class Main extends Application {
 	}
 
 	public void startGameLayout() throws IOException, InterruptedException {
-		// On charge la vue des joueurs
-		Timer timer;
-		int currentQuestion =0;
+		// On charge la vue des joueurs et on initialise la partie
 		this.partie.start();
-		System.out.println(partie.getJoueurCourant().getName());
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getClassLoader().getResource("view/QuizzViewText.fxml"));
 
@@ -104,37 +101,19 @@ public class Main extends Application {
 
 
 
-		/*while(currentQuestion<Constantes.NB_QUESTIONS)
-		{
-			currentQuestion++;	
-			for(Player curr : players) {
-
-
-				Question question = QuestionFactory.createQuestion();    
-				//Ajout du controller
-				QuizzViewTextController controller = loader.getController();
-				question.ask();
-				controller.setViewParameters(
-						currentQuestion
-						, question.getEnonce()
-						, question.getMauvaisesReponses()
-						, question.getBonneReponse()
-						);
-			}
-		}*/
-		
-
 		QuizzViewTextController controller = loader.getController();
 		controller.setMainApp(this);
-		
+
+
+		//On initialise une première fois la vue question
+		//Les autres questions et le déroulement du match se gère dans le controller Quizz
 		controller.setViewParameters(
 				partie.getNumeroQuestion()
-				,partie.getJoueurCourant()
 				, partie.getQuestionCourante().getEnonce()
 				, partie.getQuestionCourante().getMauvaisesReponses()
 				, partie.getQuestionCourante().getBonneReponse()
 				);
-		
+
 
 
 
@@ -167,7 +146,7 @@ public class Main extends Application {
 	public Context getContext() {
 		return context;
 	}
-	
+
 	public Partie getPartie() {
 		return this.partie;
 	}

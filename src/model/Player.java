@@ -20,12 +20,17 @@ public class Player {
 	
 	public void endGame(int result) {
 		if(result == 1) {
-			score.add(1);
+			//score.add(1);
+			score.set(score.get()+1);
 		}
 	}
 	
 	public StringProperty getName() {
 		return this.name;
+	}
+	
+	public void resetScore() {
+		score.set(0);
 	}
 
 }

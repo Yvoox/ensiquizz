@@ -51,7 +51,7 @@ public class FirstViewController {
     private void add() {
     	//ajout d'un joueur avec comme nom joueur+numéro d'index suivant, limité à 4 joueurs
     	if(playerTable.getItems().size() < 4) {
-    		Player newJoueur = new Player("Joueur"+(playerTable.getItems().size()+1));
+    		Player newJoueur = new Player("Joueur "+(playerTable.getItems().size()+1));
         playerTable.getItems().add(newJoueur);
         main.getPartie().ajouterJoueur(newJoueur);
     	}

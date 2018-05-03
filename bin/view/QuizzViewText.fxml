@@ -34,5 +34,6 @@
       </GridPane>
       <Label fx:id="joueur" alignment="CENTER" contentDisplay="CENTER" layoutY="54.0" prefHeight="17.0" prefWidth="600.0" text="Joueur" textAlignment="CENTER" />
       <Button fx:id="suivant" layoutX="475.0" layoutY="335.0" mnemonicParsing="false" onAction="#suivant" prefHeight="39.0" prefWidth="97.0" text="Suivant" />
+      <Button fx:id="accueil" layoutX="35.0" layoutY="335.0" mnemonicParsing="false" onAction="#accueil" prefHeight="39.0" prefWidth="97.0" text="Accueil" />
    </children>
 </AnchorPane>
