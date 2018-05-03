@@ -24,7 +24,7 @@ public class RaceChienQuestion extends Question {
                 "  ?p <http://xmlns.com/foaf/0.1/thumbnail> ?picture .\n" +
                 "  \n" +
                 "  FILTER(lang(?breadName)='fr') .\n" +
-                "} LIMIT 100";
+                "}";
         final List<QuerySolution> solutions = DBpediaQuery.execRequete(requete);
         final Reponse reponse = creerReponse(solutions);
         enonce = "À quelle race appartient ce chien ?";

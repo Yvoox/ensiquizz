@@ -20,6 +20,8 @@ public class QuestionFactory {
                 return new RaceChienQuestion();
             case Constantes.PROTOCOLE:
                 return new ProtocoleReseauQuestion();
+            case Constantes.PERSONNAGE_BD:
+                return new PersonnageBDQuestion();
             default:
                 // Ne devrait pas arriver ici
                 return null;
