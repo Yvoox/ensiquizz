@@ -2,6 +2,7 @@ package view;
 
 
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -19,10 +20,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import model.Context;
 import model.Player;
 
+
+/*
+ * 			Image im = new Image("");
+			image.setImage(im);
+ */
 
 public class QuizzViewTextController {
 	private String bonneRep;
@@ -31,6 +39,8 @@ public class QuizzViewTextController {
 	
 	@FXML
 	private ProgressBar progressBar;
+	@FXML
+	private ImageView image;
 
 	@FXML
 	private Label question;
@@ -79,6 +89,7 @@ public class QuizzViewTextController {
 		rep4.setVisible(true);
 		progressBar.setVisible(true);
 		accueil.setVisible(false);
+		image.setVisible(false);
 		
 
 	}
@@ -100,6 +111,7 @@ public class QuizzViewTextController {
 			rep3.setVisible(false);
 			progressBar.setVisible(false);
 			rep4.setVisible(false);
+			image.setVisible(false);
 			suivant.setVisible(true);
 			main.getPartie().getJoueurCourant().endGame(1);
 		}
@@ -110,6 +122,7 @@ public class QuizzViewTextController {
 			rep1.setVisible(false);
 			rep2.setVisible(false);
 			rep3.setVisible(false);
+			image.setVisible(false);
 			progressBar.setVisible(false);
 			rep4.setVisible(false);
 			suivant.setVisible(true);
@@ -127,6 +140,7 @@ public class QuizzViewTextController {
 			rep1.setVisible(false);
 			rep2.setVisible(false);
 			rep3.setVisible(false);
+			image.setVisible(false);
 			progressBar.setVisible(false);
 			rep4.setVisible(false);
 			suivant.setVisible(true);
@@ -139,6 +153,7 @@ public class QuizzViewTextController {
 			rep1.setVisible(false);
 			rep2.setVisible(false);
 			rep3.setVisible(false);
+			image.setVisible(false);
 			progressBar.setVisible(false);
 			rep4.setVisible(false);
 			suivant.setVisible(true);
@@ -155,6 +170,7 @@ public class QuizzViewTextController {
 			rep1.setVisible(false);
 			rep2.setVisible(false);
 			rep3.setVisible(false);
+			image.setVisible(false);
 			progressBar.setVisible(false);
 			rep4.setVisible(false);
 			suivant.setVisible(true);
@@ -168,6 +184,7 @@ public class QuizzViewTextController {
 			rep2.setVisible(false);
 			rep3.setVisible(false);
 			rep4.setVisible(false);
+			image.setVisible(false);
 			progressBar.setVisible(false);
 			suivant.setVisible(true);
 			main.getPartie().getJoueurCourant().endGame(0);
@@ -184,9 +201,11 @@ public class QuizzViewTextController {
 			rep2.setVisible(false);
 			rep3.setVisible(false);
 			rep4.setVisible(false);
+			image.setVisible(false);
 			progressBar.setVisible(false);
 			suivant.setVisible(true);
 			main.getPartie().getJoueurCourant().endGame(1);
+
 		}
 		else {
 			joueur.setText("Désolé "+main.getPartie().getJoueurCourant().getName().get()+" !");
@@ -196,6 +215,7 @@ public class QuizzViewTextController {
 			rep2.setVisible(false);
 			rep3.setVisible(false);
 			rep4.setVisible(false);
+			image.setVisible(false);
 			progressBar.setVisible(false);
 			suivant.setVisible(true);
 			main.getPartie().getJoueurCourant().endGame(0);
@@ -263,8 +283,6 @@ public class QuizzViewTextController {
 		        actionEvent -> timeOut()));
 		timer.play();
 		
-
-
 		
 		intitule.setText(questionIntitule);
 		question.setText(Integer.toString(questionNumber));
@@ -295,6 +313,7 @@ public class QuizzViewTextController {
 		rep2.setVisible(false);
 		rep3.setVisible(false);
 		rep4.setVisible(false);
+		image.setVisible(false);
 		joueur.setVisible(false);
 		intitule.setVisible(true);
 		accueil.setVisible(true);
@@ -318,6 +337,7 @@ public class QuizzViewTextController {
 		rep2.setVisible(false);
 		rep3.setVisible(false);
 		rep4.setVisible(false);
+		image.setVisible(false);
 		suivant.setVisible(true);
 		main.getPartie().getJoueurCourant().endGame(0);		
 	}
@@ -329,9 +349,4 @@ public class QuizzViewTextController {
 	public void progressBarReset() {
 		progressBar.setProgress(0);
 	}
-
-
-
-
-
 }
