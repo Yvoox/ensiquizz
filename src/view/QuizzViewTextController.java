@@ -234,6 +234,8 @@ public class QuizzViewTextController {
 	 * Permet également le chargement de l'interface de gagnant s'il y en a un
 	 */
 	private void suivant()  {
+		progressBarTimer.stop();
+		timer.stop();
 		if(main.getPartie().joue() != null)
 			setViewEndGame();
 		else {
