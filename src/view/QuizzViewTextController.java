@@ -2,15 +2,9 @@ package view;
 
 
 
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import org.apache.http.impl.io.SocketOutputBuffer;
 
 import application.Main;
 import javafx.animation.Animation;
@@ -20,10 +14,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
-import model.Context;
 import model.Player;
 
 
