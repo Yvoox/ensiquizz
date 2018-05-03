@@ -14,8 +14,6 @@ public class QuestionFactory {
     public static Question createQuestion() {
         Random rand = new Random();
         switch (rand.nextInt(Constantes.CATEGORIES.length)) {
-            case Constantes.GEOGRAPHIE:
-                return new GeographieQuestion();
             case Constantes.PROGRAMMATION:
                 return new LangageDeProgrammationQuestion();
             case Constantes.RACE_CHIEN:
