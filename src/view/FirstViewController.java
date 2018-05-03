@@ -53,7 +53,11 @@ public class FirstViewController {
 		int selectedIndex = playerTable.getSelectionModel().getSelectedIndex();
 		if(selectedIndex != 0) {
 			playerTable.getItems().remove(selectedIndex);
-			main.getPartie().retirerJoueur(selectedIndex);}
+			main.getPartie().retirerJoueur(selectedIndex);
+			labelNom.setVisible(false);
+			nom.setVisible(false);
+			}
+		
 	}
 
 	@FXML

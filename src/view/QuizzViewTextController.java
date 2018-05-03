@@ -110,12 +110,7 @@ public class QuizzViewTextController {
 			joueur.setText("Bravo "+main.getPartie().getJoueurCourant().getName().get()+" !");
 			question.setText("Bonne réponse !");
 			intitule.setVisible(false);
-			rep1.setVisible(false);
-			rep2.setVisible(false);
-			rep3.setVisible(false);
-			progressBar.setVisible(false);
-			rep4.setVisible(false);
-			image.setVisible(false);
+			cacherInterface();
 			suivant.setVisible(true);
 			progressBarTimer.stop();
 			timer.stop();
@@ -125,12 +120,7 @@ public class QuizzViewTextController {
 			joueur.setText("Désolé "+main.getPartie().getJoueurCourant().getName().get()+" !");
 			question.setText("Mauvaise réponse !");
 			intitule.setText("La réponse était : "+bonneRep);
-			rep1.setVisible(false);
-			rep2.setVisible(false);
-			rep3.setVisible(false);
-			image.setVisible(false);
-			progressBar.setVisible(false);
-			rep4.setVisible(false);
+			cacherInterface();
 			suivant.setVisible(true);
 			progressBarTimer.stop();
 			timer.stop();
@@ -145,12 +135,7 @@ public class QuizzViewTextController {
 			joueur.setText("Bravo "+main.getPartie().getJoueurCourant().getName().get()+" !");
 			question.setText("Bonne réponse !");
 			intitule.setVisible(false);
-			rep1.setVisible(false);
-			rep2.setVisible(false);
-			rep3.setVisible(false);
-			image.setVisible(false);
-			progressBar.setVisible(false);
-			rep4.setVisible(false);
+			cacherInterface();
 			suivant.setVisible(true);
 			progressBarTimer.stop();
 			timer.stop();
@@ -160,11 +145,7 @@ public class QuizzViewTextController {
 			joueur.setText("Désolé "+main.getPartie().getJoueurCourant().getName().get()+" !");
 			question.setText("Mauvaise réponse !");
 			intitule.setText("La réponse était : "+bonneRep);
-			rep1.setVisible(false);
-			rep2.setVisible(false);
-			rep3.setVisible(false);
-			image.setVisible(false);
-			progressBar.setVisible(false);
+			cacherInterface();
 			rep4.setVisible(false);
 			suivant.setVisible(true);
 			progressBarTimer.stop();
@@ -179,11 +160,7 @@ public class QuizzViewTextController {
 			joueur.setText("Bravo "+main.getPartie().getJoueurCourant().getName().get()+" !");
 			question.setText("Bonne réponse !");
 			intitule.setVisible(false);
-			rep1.setVisible(false);
-			rep2.setVisible(false);
-			rep3.setVisible(false);
-			image.setVisible(false);
-			progressBar.setVisible(false);
+			cacherInterface();
 			rep4.setVisible(false);
 			suivant.setVisible(true);
 			progressBarTimer.stop();
@@ -194,12 +171,7 @@ public class QuizzViewTextController {
 			joueur.setText("Désolé "+main.getPartie().getJoueurCourant().getName().get()+" !");
 			question.setText("Mauvaise réponse !");
 			intitule.setText("La réponse était : "+bonneRep);
-			rep1.setVisible(false);
-			rep2.setVisible(false);
-			rep3.setVisible(false);
-			rep4.setVisible(false);
-			image.setVisible(false);
-			progressBar.setVisible(false);
+			cacherInterface();
 			suivant.setVisible(true);
 			progressBarTimer.stop();
 			timer.stop();
@@ -213,12 +185,7 @@ public class QuizzViewTextController {
 			joueur.setText("Bravo "+main.getPartie().getJoueurCourant().getName().get()+" !");
 			question.setText("Bonne réponse !");
 			intitule.setVisible(false);
-			rep1.setVisible(false);
-			rep2.setVisible(false);
-			rep3.setVisible(false);
-			rep4.setVisible(false);
-			image.setVisible(false);
-			progressBar.setVisible(false);
+			cacherInterface();
 			suivant.setVisible(true);
 			progressBarTimer.stop();
 			timer.stop();
@@ -229,12 +196,7 @@ public class QuizzViewTextController {
 			joueur.setText("Désolé "+main.getPartie().getJoueurCourant().getName().get()+" !");
 			question.setText("Mauvaise réponse !");
 			intitule.setText("La réponse était : "+bonneRep);
-			rep1.setVisible(false);
-			rep2.setVisible(false);
-			rep3.setVisible(false);
-			rep4.setVisible(false);
-			image.setVisible(false);
-			progressBar.setVisible(false);
+			cacherInterface();
 			suivant.setVisible(true);
 			progressBarTimer.stop();
 			timer.stop();
@@ -339,15 +301,10 @@ public class QuizzViewTextController {
 	 */
 	public void setViewEndGame() {
 		suivant.setVisible(false);
-		rep1.setVisible(false);
-		rep2.setVisible(false);
-		rep3.setVisible(false);
-		rep4.setVisible(false);
-		image.setVisible(false);
+		cacherInterface();
 		joueur.setVisible(false);
 		intitule.setVisible(true);
 		accueil.setVisible(true);
-		progressBar.setVisible(false);
 		String classement = "Classement : ";
 		question.setText("Bravo, " + main.getPartie().estGagnant().getName().get() + " a gagné avec "+main.getPartie().estGagnant().getScore().get()+" points");
 		for(Player it : main.getPartie().getJoueurs()) {
@@ -363,11 +320,7 @@ public class QuizzViewTextController {
 		joueur.setText("Désolé "+main.getPartie().getJoueurCourant().getName().get()+" !");
 		question.setText("Temps écoulé !");
 		intitule.setText("Il faudra répondre plus rapidement la prochaine fois !");
-		rep1.setVisible(false);
-		rep2.setVisible(false);
-		rep3.setVisible(false);
-		rep4.setVisible(false);
-		image.setVisible(false);
+		cacherInterface();
 		suivant.setVisible(true);
 		main.getPartie().getJoueurCourant().endGame(0);
 	}
@@ -378,5 +331,14 @@ public class QuizzViewTextController {
 
 	public void progressBarReset() {
 		progressBar.setProgress(0);
+	}
+	
+	private void cacherInterface() {
+		rep1.setVisible(false);
+		rep2.setVisible(false);
+		rep3.setVisible(false);
+		rep4.setVisible(false);
+		image.setVisible(false);
+		progressBar.setVisible(false);
 	}
 }
