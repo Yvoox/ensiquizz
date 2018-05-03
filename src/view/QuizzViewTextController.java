@@ -117,6 +117,8 @@ public class QuizzViewTextController {
 			rep4.setVisible(false);
 			image.setVisible(false);
 			suivant.setVisible(true);
+			progressBarTimer.stop();
+			timer.stop();
 			main.getPartie().getJoueurCourant().endGame(1);
 		}
 		else {
@@ -130,6 +132,8 @@ public class QuizzViewTextController {
 			progressBar.setVisible(false);
 			rep4.setVisible(false);
 			suivant.setVisible(true);
+			progressBarTimer.stop();
+			timer.stop();
 			main.getPartie().getJoueurCourant().endGame(0);
 		}
 
@@ -148,6 +152,8 @@ public class QuizzViewTextController {
 			progressBar.setVisible(false);
 			rep4.setVisible(false);
 			suivant.setVisible(true);
+			progressBarTimer.stop();
+			timer.stop();
 			main.getPartie().getJoueurCourant().endGame(1);
 		}
 		else {
@@ -161,6 +167,8 @@ public class QuizzViewTextController {
 			progressBar.setVisible(false);
 			rep4.setVisible(false);
 			suivant.setVisible(true);
+			progressBarTimer.stop();
+			timer.stop();
 			main.getPartie().getJoueurCourant().endGame(0);
 		}
 	}
@@ -178,6 +186,8 @@ public class QuizzViewTextController {
 			progressBar.setVisible(false);
 			rep4.setVisible(false);
 			suivant.setVisible(true);
+			progressBarTimer.stop();
+			timer.stop();
 			main.getPartie().getJoueurCourant().endGame(1);
 		}
 		else {
@@ -191,6 +201,8 @@ public class QuizzViewTextController {
 			image.setVisible(false);
 			progressBar.setVisible(false);
 			suivant.setVisible(true);
+			progressBarTimer.stop();
+			timer.stop();
 			main.getPartie().getJoueurCourant().endGame(0);
 		}
 	}
@@ -208,6 +220,8 @@ public class QuizzViewTextController {
 			image.setVisible(false);
 			progressBar.setVisible(false);
 			suivant.setVisible(true);
+			progressBarTimer.stop();
+			timer.stop();
 			main.getPartie().getJoueurCourant().endGame(1);
 
 		}
@@ -222,6 +236,8 @@ public class QuizzViewTextController {
 			image.setVisible(false);
 			progressBar.setVisible(false);
 			suivant.setVisible(true);
+			progressBarTimer.stop();
+			timer.stop();
 			main.getPartie().getJoueurCourant().endGame(0);
 		}
 	}
@@ -238,8 +254,7 @@ public class QuizzViewTextController {
 	 * Permet également le chargement de l'interface de gagnant s'il y en a un
 	 */
 	private void suivant() throws FileNotFoundException  {
-		progressBarTimer.stop();
-		timer.stop();
+
 		if(main.getPartie().joue() != null)
 			setViewEndGame();
 		else {
