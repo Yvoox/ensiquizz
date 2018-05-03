@@ -9,18 +9,28 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
+import org.apache.http.impl.io.SocketOutputBuffer;
 
 import application.Main;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.util.Duration;
 import model.Context;
 import model.Player;
 
 
 public class QuizzViewTextController {
 	private String bonneRep;
+	Timeline timer;
+	Timeline progressBarTimer;
+	
+	@FXML
+	private ProgressBar progressBar;
 
 	@FXML
 	private Label question;
@@ -67,7 +77,10 @@ public class QuizzViewTextController {
 		rep2.setVisible(true);
 		rep3.setVisible(true);
 		rep4.setVisible(true);
+		progressBar.setVisible(true);
 		accueil.setVisible(false);
+		
+
 	}
 
 	@FXML
@@ -85,6 +98,7 @@ public class QuizzViewTextController {
 			rep1.setVisible(false);
 			rep2.setVisible(false);
 			rep3.setVisible(false);
+			progressBar.setVisible(false);
 			rep4.setVisible(false);
 			suivant.setVisible(true);
 			main.getPartie().getJoueurCourant().endGame(1);
@@ -96,6 +110,7 @@ public class QuizzViewTextController {
 			rep1.setVisible(false);
 			rep2.setVisible(false);
 			rep3.setVisible(false);
+			progressBar.setVisible(false);
 			rep4.setVisible(false);
 			suivant.setVisible(true);
 			main.getPartie().getJoueurCourant().endGame(0);
@@ -112,6 +127,7 @@ public class QuizzViewTextController {
 			rep1.setVisible(false);
 			rep2.setVisible(false);
 			rep3.setVisible(false);
+			progressBar.setVisible(false);
 			rep4.setVisible(false);
 			suivant.setVisible(true);
 			main.getPartie().getJoueurCourant().endGame(1);
@@ -123,6 +139,7 @@ public class QuizzViewTextController {
 			rep1.setVisible(false);
 			rep2.setVisible(false);
 			rep3.setVisible(false);
+			progressBar.setVisible(false);
 			rep4.setVisible(false);
 			suivant.setVisible(true);
 			main.getPartie().getJoueurCourant().endGame(0);
@@ -138,6 +155,7 @@ public class QuizzViewTextController {
 			rep1.setVisible(false);
 			rep2.setVisible(false);
 			rep3.setVisible(false);
+			progressBar.setVisible(false);
 			rep4.setVisible(false);
 			suivant.setVisible(true);
 			main.getPartie().getJoueurCourant().endGame(1);
@@ -150,6 +168,7 @@ public class QuizzViewTextController {
 			rep2.setVisible(false);
 			rep3.setVisible(false);
 			rep4.setVisible(false);
+			progressBar.setVisible(false);
 			suivant.setVisible(true);
 			main.getPartie().getJoueurCourant().endGame(0);
 		}
@@ -165,6 +184,7 @@ public class QuizzViewTextController {
 			rep2.setVisible(false);
 			rep3.setVisible(false);
 			rep4.setVisible(false);
+			progressBar.setVisible(false);
 			suivant.setVisible(true);
 			main.getPartie().getJoueurCourant().endGame(1);
 		}
@@ -176,6 +196,7 @@ public class QuizzViewTextController {
 			rep2.setVisible(false);
 			rep3.setVisible(false);
 			rep4.setVisible(false);
+			progressBar.setVisible(false);
 			suivant.setVisible(true);
 			main.getPartie().getJoueurCourant().endGame(0);
 		}
@@ -208,6 +229,7 @@ public class QuizzViewTextController {
 			rep3.setVisible(true);
 			rep4.setVisible(true);
 			suivant.setVisible(false);
+			progressBar.setVisible(true);
 		}
 	}
 
@@ -224,9 +246,26 @@ public class QuizzViewTextController {
 	 * Methode setViewParameters
 	 * Permet l'actualisation des éléments visuels
 	 * Prépare également la liste de réponses à partir de la bonne et des mauvaises
+	 * Gère le temps pour chaque question
 	 */
 	public void setViewParameters(int questionNumber, String questionIntitule, String[] mauvaisesReponses, String bonneReponse) {
 
+		progressBarReset();
+
+		progressBarTimer = new Timeline(new KeyFrame(
+		        Duration.millis(1000),
+		        actionEvent -> progressBarAdd()));
+		progressBarTimer.setCycleCount(Animation.INDEFINITE);
+		progressBarTimer.play();
+		
+		timer = new Timeline(new KeyFrame(
+		        Duration.millis(10000),
+		        actionEvent -> timeOut()));
+		timer.play();
+		
+
+
+		
 		intitule.setText(questionIntitule);
 		question.setText(Integer.toString(questionNumber));
 		joueur.setText(main.getPartie().getJoueurCourant().getName().get() + ", c'est à vous !");
@@ -259,6 +298,7 @@ public class QuizzViewTextController {
 		joueur.setVisible(false);
 		intitule.setVisible(true);
 		accueil.setVisible(true);
+		progressBar.setVisible(false);
 		String classement = "Classement : ";
 		question.setText("Bravo, " + main.getPartie().estGagnant().getName().get() + " a gagné avec "+main.getPartie().estGagnant().getScore().get()+" points");
 		for(Player it : main.getPartie().getJoueurs()) {
@@ -266,6 +306,28 @@ public class QuizzViewTextController {
 			classement+=it.getName().get()+" avec "+it.getScore().get()+" points ";
 		}
 		intitule.setText(classement);
+	}
+	
+	public void timeOut() {
+		timer.stop();
+		progressBarTimer.stop();
+		joueur.setText("Désolé "+main.getPartie().getJoueurCourant().getName().get()+" !");
+		question.setText("Temps écoulé !");
+		intitule.setText("Il faudra répondre plus rapidement la prochaine fois !");
+		rep1.setVisible(false);
+		rep2.setVisible(false);
+		rep3.setVisible(false);
+		rep4.setVisible(false);
+		suivant.setVisible(true);
+		main.getPartie().getJoueurCourant().endGame(0);		
+	}
+	
+	public void progressBarAdd() {
+		progressBar.setProgress(progressBar.getProgress()+0.1);
+	}
+	
+	public void progressBarReset() {
+		progressBar.setProgress(0);
 	}
 
 

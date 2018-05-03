@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -35,5 +36,6 @@
       <Label fx:id="joueur" alignment="CENTER" contentDisplay="CENTER" layoutY="54.0" prefHeight="17.0" prefWidth="600.0" text="Joueur" textAlignment="CENTER" />
       <Button fx:id="suivant" layoutX="475.0" layoutY="335.0" mnemonicParsing="false" onAction="#suivant" prefHeight="39.0" prefWidth="97.0" text="Suivant" />
       <Button fx:id="accueil" layoutX="35.0" layoutY="335.0" mnemonicParsing="false" onAction="#accueil" prefHeight="39.0" prefWidth="97.0" text="Accueil" />
+      <ProgressBar fx:id="progressBar" layoutX="201.0" layoutY="355.0" prefWidth="200.0" progress="0.0" />
    </children>
 </AnchorPane>
