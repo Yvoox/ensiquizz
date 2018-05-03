@@ -1,67 +1,51 @@
 package model;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
-
-import org.apache.jena.query.QuerySolution;
-
 import util.Constantes;
-import util.DBpediaQuery;
+
+import java.util.Random;
 
 public abstract class Question {
-	
-	protected int categorie;
-	protected String enonce;
-	protected String bonneReponse;
-	protected String[] mauvaisesReponses;
-	
-	protected Question(int categorie)
-	{
-		this.categorie=categorie;
-		this.mauvaisesReponses= new String[3];
-	}
-	
 
-	public void ask()
-	{		
-	}
+    protected Random rand;
+    protected int categorie;
+    protected String imgUrl;
+    protected String enonce;
+    protected String bonneReponse;
+    protected String[] mauvaisesReponses;
 
-	public int getCategorie() {
-		return categorie;
-	}
+    protected Question(int categorie) {
+        this.categorie = categorie;
+        this.mauvaisesReponses = new String[Constantes.NB_REPONSES - 1];
+        this.imgUrl = null;
+        this.rand = new Random();
+    }
 
-	public void setCategorie(int categorie) {
-		this.categorie = categorie;
-	}
 
-	public String getEnonce() {
-		return enonce;
-	}
+    public abstract void ask();
 
-	public void setEnonce(String enonce) {
-		this.enonce = enonce;
-	}
+    public int getCategorie() {
+        return categorie;
+    }
 
-	public String getBonneReponse() {
-		return bonneReponse;
-	}
+    public String getEnonce() {
+        return enonce;
+    }
 
-	public void setBonneReponse(String bonneReponse) {
-		this.bonneReponse = bonneReponse;
-	}
+    public String getBonneReponse() {
+        return bonneReponse;
+    }
 
-	public String[] getMauvaisesReponses() {
-		return mauvaisesReponses;
-	}
+    public String[] getMauvaisesReponses() {
+        return mauvaisesReponses;
+    }
 
-	public void setMauvaisesReponses(String[] mauvaisesReponses) {
-		this.mauvaisesReponses = mauvaisesReponses;
-	}
-	
-	
+    public String getImageUrl() {
+        return imgUrl;
+    }
 
-	
+    public boolean hasImage() {
+        return this.imgUrl != null;
+    }
+
 
 }

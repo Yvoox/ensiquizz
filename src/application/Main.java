@@ -17,6 +17,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Context;
+import model.Partie;
 import model.Player;
 import model.Question;
 import model.QuestionFactory;
@@ -30,9 +31,13 @@ public class Main extends Application {
 	private BorderPane rootLayout;
 	private ObservableList<Player> players = FXCollections.observableArrayList();
 	private Context context;
+	private Partie partie;
 
 	public Main() { //initialisation du joueur 1
 		players.add(new Player("Joueur 1"));
+		partie = new Partie();
+		partie.ajouterJoueur(new Player("Joueur 1"));
+
 	}
 
 	@Override
@@ -87,6 +92,8 @@ public class Main extends Application {
 		// On charge la vue des joueurs
 		Timer timer;
 		int currentQuestion =0;
+		this.partie.start();
+		System.out.println(partie.getJoueurCourant().getName());
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getClassLoader().getResource("view/QuizzViewText.fxml"));
 
@@ -97,7 +104,7 @@ public class Main extends Application {
 
 
 
-		while(currentQuestion<Constantes.NB_QUESTIONS)
+		/*while(currentQuestion<Constantes.NB_QUESTIONS)
 		{
 			currentQuestion++;	
 			for(Player curr : players) {
@@ -109,18 +116,25 @@ public class Main extends Application {
 				question.ask();
 				controller.setViewParameters(
 						currentQuestion
-						, curr
 						, question.getEnonce()
 						, question.getMauvaisesReponses()
 						, question.getBonneReponse()
 						);
-
-
-
-
 			}
-		}
-		//findWinner(players);
+		}*/
+		
+
+		QuizzViewTextController controller = loader.getController();
+		controller.setMainApp(this);
+		
+		controller.setViewParameters(
+				partie.getNumeroQuestion()
+				,partie.getJoueurCourant()
+				, partie.getQuestionCourante().getEnonce()
+				, partie.getQuestionCourante().getMauvaisesReponses()
+				, partie.getQuestionCourante().getBonneReponse()
+				);
+		
 
 
 
@@ -147,11 +161,15 @@ public class Main extends Application {
 	}
 
 	public ObservableList<Player> getPlayers() { //Permet la récupération dans les vues de la liste de joueurs
-		return players;
+		return FXCollections.observableArrayList(partie.getJoueurs());
 	}
 
 	public Context getContext() {
 		return context;
+	}
+	
+	public Partie getPartie() {
+		return this.partie;
 	}
 
 
