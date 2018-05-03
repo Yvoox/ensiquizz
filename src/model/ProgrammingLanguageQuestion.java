@@ -8,11 +8,8 @@ import java.util.Random;
 
 public class ProgrammingLanguageQuestion extends Question {
 
-    private Random rand;
-
     protected ProgrammingLanguageQuestion(int categorie) {
         super(categorie);
-        rand = new Random();
     }
 
     @Override

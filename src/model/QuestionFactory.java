@@ -18,6 +18,8 @@ public class QuestionFactory {
                 return new GeographieQuestion(Constantes.GEOGRAPHIE);
             case Constantes.PROGRAMMATION:
                 return new ProgrammingLanguageQuestion(Constantes.PROGRAMMATION);
+            case Constantes.RACE_CHIEN:
+                return new RaceChienQuestion(Constantes.RACE_CHIEN);
             default:
                 // Ne devrait pas arriver ici
                 return null;

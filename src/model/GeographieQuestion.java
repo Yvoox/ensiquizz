@@ -1,16 +1,10 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
+import org.apache.jena.query.QuerySolution;
+import util.DBpediaQuery;
+
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
-
-import org.apache.jena.query.QuerySolution;
-
-import util.Constantes;
-import util.DBpediaQuery;
 
 public class GeographieQuestion extends Question {
 
