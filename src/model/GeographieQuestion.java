@@ -16,15 +16,13 @@ public class GeographieQuestion extends Question {
 
 	protected GeographieQuestion(int categorie) {
 		super(categorie);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void ask() {
-		// TODO Auto-generated method stub
 		Random rand = new Random();
 		
-		List<QuerySolution> solutions = DBpediaQuery.execRequete(
+		List<QuerySolution> solutions = DBpediaQuery.execRequeteFr(
 				"prefix dbpedia-owl: <http://dbpedia.org/ontology/>\n" + 
 				"prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" + 
 				"\n" + 
@@ -37,7 +35,7 @@ public class GeographieQuestion extends Question {
 		String pays = solutions.get(rand.nextInt(solutions.size())).get("x").toString();
 		
 		
-		solutions = DBpediaQuery.execRequete(
+		solutions = DBpediaQuery.execRequeteFr(
 				"prefix dbpedia-owl: <http://dbpedia.org/ontology/>\n" + 
 				"prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" + 
 				"\n" + 
@@ -57,7 +55,7 @@ public class GeographieQuestion extends Question {
 		
 		
 		
-		solutions = DBpediaQuery.execRequete(
+		solutions = DBpediaQuery.execRequeteFr(
 				"prefix dbpedia-owl: <http://dbpedia.org/ontology/>\n" + 
 				"prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" + 
 				"\n" + 

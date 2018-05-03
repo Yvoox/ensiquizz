@@ -1,14 +1,6 @@
 package model;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
-
-import org.apache.jena.query.QuerySolution;
-
 import util.Constantes;
-import util.DBpediaQuery;
 
 public abstract class Question {
 	
@@ -20,7 +12,7 @@ public abstract class Question {
 	protected Question(int categorie)
 	{
 		this.categorie=categorie;
-		this.mauvaisesReponses= new String[3];
+		this.mauvaisesReponses= new String[Constantes.NB_REPONSES - 1];
 	}
 	
 
