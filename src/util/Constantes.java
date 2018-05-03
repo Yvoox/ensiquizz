@@ -13,8 +13,8 @@ public abstract class Constantes {
 	public static final int NB_REPONSES=4;
 	
 	public static final int GEOGRAPHIE=0;
-	public static final int HISTOIRE=1;
-	public static final int SPORT=2;
-	
-	public static final String[] CATEGORIES = {"Géographie", "Histoire", "Sport"};
+	public static final int PROGRAMMATION = 1;
+	public static final int RACE_CHIEN = 2;
+
+	public static final String[] CATEGORIES = {"Géographie", "Programmation", "Race de chien"};
 }
