@@ -1,5 +1,6 @@
 package application;
 
+import java.io.File;
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -12,6 +13,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Partie;
 import model.Player;
+import model.Question;
+import model.QuestionFactory;
+import util.Constantes;
+import util.CsvManager;
 import view.FirstViewController;
 import view.QuizzViewTextController;
 
@@ -21,8 +26,12 @@ public class Main extends Application {
 	private BorderPane rootLayout;
 	private ObservableList<Player> players = FXCollections.observableArrayList();
 	private Partie partie;
+	private CsvManager manager;
 
 	public Main() { //initialisation du joueur 1
+		manager = new CsvManager(Constantes.FILE_NAME);
+		manager.csvCreation(); //verification de l'existance ou création du csv de sauvegarde des scores
+		manager.getResource(); //récupération du fichier
 		players.add(new Player("Joueur 1"));
 		partie = new Partie();
 		partie.ajouterJoueur(new Player("Joueur 1"));
@@ -135,6 +144,11 @@ public class Main extends Application {
 	public Partie getPartie() {
 		return this.partie;
 	}
+
+	public CsvManager getManager() {
+		return this.manager;
+	}
+
 
 
 
