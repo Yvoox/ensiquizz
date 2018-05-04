@@ -34,15 +34,15 @@ public class CsvManager {
 
 	public void csvCreation() {
 		FileWriter writer;
-		File test = new File(Constantes.FILE_NAME);
+		File test = new File(fileName);
 		if(test.exists()) {
 			System.out.println("Csv already exist");
 		}
 		else {
 			System.out.println("Csv doesn't exist. Csv in creation..");
 			try {
-				writer = new FileWriter(Constantes.FILE_NAME);
-				writer.append("NomJoueur,nbPartie,partie1,partie2,partie3,partie4,partie5\n");
+				writer = new FileWriter(fileName);
+				writer.append("NomJoueur,partie1,partie2,partie3,partie4,partie5\n");
 				writer.close();
 				if(test.exists()) {
 					System.out.println("Csv creation succeed");
@@ -84,7 +84,7 @@ public class CsvManager {
 				content+=it+"\n";
 			}
 			content+=entry+"\n";
-			FileWriter writer = new FileWriter(Constantes.FILE_NAME);
+			FileWriter writer = new FileWriter(fileName);
 			writer.append(content);
 			writer.close();
 		} catch (IOException e) {
@@ -99,7 +99,7 @@ public class CsvManager {
 			for(String it : readFile()) {
 				if(it.contains(player.getName().get())) {
 					String[] data = it.split(",");
-					for(int i = 2;i<data.length;i++) {
+					for(int i = 1;i<data.length;i++) {
 						dataSerie.getData().add(new XYChart.Data("Partie "+Integer.toString(i-1), Integer.parseInt(data[i])));
 					}
 					graph.getData().add(dataSerie);
@@ -107,6 +107,48 @@ public class CsvManager {
 				}
 				else graph.getData().clear();
 			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void insertNewScore(Player player, int score) {
+		
+		String content ="";
+		String playerRow="";
+		String playerName = player.getName().get();
+		
+		try {
+			
+			for(String it : readFile()) {
+				if(it.contains(playerName)) {
+					playerRow+=it;
+				}
+				else {
+					content+=it+"\n";
+				}
+			}
+			playerRow+=","+score+"\n";
+			FileWriter writer = new FileWriter(Constantes.FILE_NAME);
+			writeCSV(content+playerRow);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void createPlayer(Player player) {
+		boolean exist = false;
+		try {
+			for(String it : readFile()) {
+				if(it.contains(player.getName().get())) {
+					exist = true;
+					break;
+				}
+			}
+			if(!exist) writeCSV(player.getName().get());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

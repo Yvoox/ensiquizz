@@ -80,6 +80,7 @@ public class FirstViewController {
 			Player newJoueur = new Player("Joueur "+(playerTable.getItems().size()+1));
 			playerTable.getItems().add(newJoueur);
 			main.getPartie().ajouterJoueur(newJoueur);
+			this.main.getManager().createPlayer(newJoueur);
 		}
 	}
 
@@ -92,6 +93,7 @@ public class FirstViewController {
 			playerTable.getItems().get(index).setName(joueurSel.getName().get());
 			this.main.getManager().completeGraph(joueurSel, graphique);
 			playerTable.refresh();
+			this.main.getManager().createPlayer(joueurSel);
 			
 			nom.setVisible(false);
 			labelNom.setVisible(false);

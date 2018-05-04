@@ -35,6 +35,7 @@ public class Main extends Application {
 		players.add(new Player("Joueur 1"));
 		partie = new Partie();
 		partie.ajouterJoueur(new Player("Joueur 1"));
+		manager.createPlayer(new Player("Joueur 1"));
 
 	}
 

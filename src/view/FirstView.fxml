@@ -16,9 +16,9 @@
 
 <AnchorPane minHeight="400.0" minWidth="600.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@../application/application.css" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FirstViewController">
    <children>
-      <SplitPane dividerPositions="0.29797979797979796" onMouseClicked="#deselectJoueur" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.29797979797979796" onMousePressed="#deselectJoueur" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane id="pane" minHeight="0.0" minWidth="0.0" onMouseClicked="#deselectJoueur" prefHeight="160.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
+          <AnchorPane id="pane" minHeight="0.0" minWidth="0.0" onMousePressed="#deselectJoueur" prefHeight="160.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
                <children>
                   <Label alignment="CENTER" layoutX="48.0" layoutY="14.0" text="Joueurs :" textAlignment="CENTER" underline="true" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="47.0" AnchorPane.topAnchor="14.0">
                      <font>

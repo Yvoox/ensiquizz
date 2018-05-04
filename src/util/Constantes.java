@@ -6,7 +6,6 @@ public abstract class Constantes {
 	 * Nombre de questions dans une partie
 	 */
 	public static final int NB_QUESTIONS=10;
-
 	/**
 	 * Nombre de réponses proposées pour chaque question
 	 */

@@ -306,12 +306,20 @@ public class QuizzViewTextController {
 		intitule.setVisible(true);
 		accueil.setVisible(true);
 		String classement = "Classement : ";
-		question.setText("Bravo, " + main.getPartie().estGagnant().getName().get() + " a gagné avec "+main.getPartie().estGagnant().getScore().get()+" points");
+		Player gagnant = main.getPartie().estGagnant();
+		question.setText("Bravo, " + gagnant.getName().get() + " a gagné avec "+gagnant.getScore().get()+" points");
+		this.main.getManager().insertNewScore(gagnant, gagnant.getScore().get()); //ajout du gagnant dans le CSV
 		for(Player it : main.getPartie().getJoueurs()) {
-			if(!it.equals(main.getPartie().estGagnant()))
-			classement+=it.getName().get()+" avec "+it.getScore().get()+" points ";
+			if(!it.equals(gagnant)) {
+				classement+=it.getName().get()+" avec "+it.getScore().get()+" points ";
+				this.main.getManager().insertNewScore(it, it.getScore().get()); //ajout du score au joueur dans le CSV
+			}
+
 		}
 		intitule.setText(classement);
+		
+		
+		
 	}
 
 	public void timeOut() {
