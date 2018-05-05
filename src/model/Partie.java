@@ -3,7 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-import util.Constantes;
+import model.questions.Question;
+import model.questions.QuestionFactory;
 
 public class Partie {
 	List<Player> joueurs;

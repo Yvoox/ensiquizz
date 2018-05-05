@@ -1,27 +1,17 @@
 package application;
 
 import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import model.Context;
 import model.Partie;
 import model.Player;
-import model.Question;
-import model.QuestionFactory;
-import util.Constantes;
 import view.FirstViewController;
 import view.QuizzViewTextController;
 
@@ -30,7 +20,6 @@ public class Main extends Application {
 	private Stage primaryStage;
 	private BorderPane rootLayout;
 	private ObservableList<Player> players = FXCollections.observableArrayList();
-	private Context context;
 	private Partie partie;
 
 	public Main() { //initialisation du joueur 1
@@ -141,10 +130,6 @@ public class Main extends Application {
 
 	public ObservableList<Player> getPlayers() { //Permet la récupération dans les vues de la liste de joueurs
 		return FXCollections.observableArrayList(partie.getJoueurs());
-	}
-
-	public Context getContext() {
-		return context;
 	}
 
 	public Partie getPartie() {
