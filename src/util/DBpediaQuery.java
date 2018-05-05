@@ -7,15 +7,12 @@ import java.util.List;
 
 public abstract class DBpediaQuery {
 
-    private static final String DBPEDIA_URL = "http://dbpedia.org/sparql";
-    private static final String DBPEDIA_FR_URL = "http://fr.dbpedia.org/sparql";
-
     public static List<QuerySolution> execRequete(String requete) {
-        return getQuerySolutions(requete, DBPEDIA_URL);
+        return getQuerySolutions(requete, Constantes.DBPEDIA_URL);
     }
 
     public static List<QuerySolution> execRequeteFr(String requete) {
-        return getQuerySolutions(requete, DBPEDIA_FR_URL);
+        return getQuerySolutions(requete, Constantes.DBPEDIA_FR_URL);
     }
 
     private static List<QuerySolution> getQuerySolutions(String requete, String url) {

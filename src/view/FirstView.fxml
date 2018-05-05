@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="400.0" minWidth="600.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FirstViewController">
+<AnchorPane minHeight="400.0" minWidth="600.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@../application/application.css" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FirstViewController">
    <children>
-      <SplitPane dividerPositions="0.29797979797979796" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.29797979797979796" onMousePressed="#deselectJoueur" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane id="test" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
+          <AnchorPane id="pane" minHeight="0.0" minWidth="0.0" onMousePressed="#deselectJoueur" prefHeight="160.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
                <children>
                   <Label alignment="CENTER" layoutX="48.0" layoutY="14.0" text="Joueurs :" textAlignment="CENTER" underline="true" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="47.0" AnchorPane.topAnchor="14.0">
                      <font>
@@ -23,7 +27,7 @@
                   </Label>
                   <Button id="add" layoutX="12.0" layoutY="276.0" mnemonicParsing="false" onAction="#add" text="Ajouter" AnchorPane.bottomAnchor="95.0" AnchorPane.leftAnchor="10.0" />
                   <Button id="del" layoutX="83.0" layoutY="276.0" mnemonicParsing="false" onAction="#delete" text="Supprimer" AnchorPane.bottomAnchor="95.0" AnchorPane.rightAnchor="5.0" />
-                  <TableView fx:id="playerTable" layoutX="12.0" layoutY="53.0" prefHeight="200.0" prefWidth="152.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="53.0">
+                  <TableView fx:id="playerTable" layoutX="12.0" layoutY="53.0" onMouseClicked="#prepareChangeNom" prefHeight="200.0" prefWidth="152.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="53.0">
                     <columns>
                       <TableColumn fx:id="nameColumn" maxWidth="1.7976931348623157E308" prefWidth="151.0" text="Nom :" />
                     </columns>
@@ -31,16 +35,26 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
+                  <TextField fx:id="nom" layoutX="66.0" layoutY="350.0" onKeyPressed="#changeNom" prefHeight="32.0" prefWidth="146.0" />
+                  <Label fx:id="labelNom" layoutX="15.0" layoutY="357.0" text="Nom :" />
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="298.0" prefWidth="351.0">
+          <AnchorPane id="pane" minHeight="0.0" minWidth="0.0" prefHeight="298.0" prefWidth="351.0">
                <children>
-                  <ImageView fitHeight="609.0" fitWidth="591.0" layoutX="-2.0" layoutY="-1.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="-2.0" AnchorPane.topAnchor="-1.0">
+                  <ImageView fx:id="image" fitHeight="609.0" fitWidth="591.0" layoutX="-2.0" layoutY="-1.0" nodeOrientation="INHERIT" onMouseClicked="#deselectJoueur" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="-2.0" AnchorPane.topAnchor="-1.0">
                      <image>
                         <Image url="@../../img/ensiquizz_logo.png" />
                      </image>
                   </ImageView>
-                  <Button layoutX="96.0" layoutY="514.0" mnemonicParsing="false" onAction="#startGame" prefHeight="15.0" prefWidth="392.0" text="Lancer une partie !" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="96.0" AnchorPane.rightAnchor="68.0" />
+                  <Button fx:id="start" layoutX="96.0" layoutY="514.0" mnemonicParsing="false" onAction="#startGame" prefHeight="15.0" prefWidth="392.0" text="Lancer une partie !" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="96.0" AnchorPane.rightAnchor="68.0" />
+                  <BarChart fx:id="graphique" barGap="5.0" categoryGap="1.0" layoutX="29.0" layoutY="55.0" title="Récapitulatif">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </BarChart>
                </children></AnchorPane>
         </items>
       </SplitPane>

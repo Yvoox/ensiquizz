@@ -10,15 +10,15 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.QuizzViewTextController">
+<AnchorPane id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../application/application.css" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.QuizzViewTextController">
    <children>
-      <Label fx:id="question" alignment="CENTER" layoutX="1.0" layoutY="111.0" prefHeight="31.0" prefWidth="600.0" text="QUESTION #" textAlignment="CENTER" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="111.0">
+      <Label fx:id="question" alignment="CENTER" layoutX="74.0" layoutY="107.0" prefHeight="31.0" prefWidth="600.0" text="QUESTION #" textAlignment="CENTER" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="-74.0" AnchorPane.topAnchor="107.0">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
-      <Label fx:id="intitule" alignment="CENTER" contentDisplay="CENTER" layoutX="29.0" layoutY="183.0" prefHeight="17.0" prefWidth="542.0" text="Intitulé" textAlignment="CENTER" AnchorPane.leftAnchor="29.0" />
-      <GridPane layoutX="83.0" layoutY="235.0" prefHeight="113.0" prefWidth="435.0" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="235.0">
+      <Label fx:id="intitule" alignment="CENTER" contentDisplay="CENTER" layoutX="116.0" layoutY="238.0" prefHeight="17.0" prefWidth="542.0" text="Intitulé" textAlignment="CENTER" AnchorPane.leftAnchor="116.0" />
+      <GridPane layoutX="180.0" layoutY="257.0" prefHeight="239.0" prefWidth="525.0" AnchorPane.bottomAnchor="104.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="95.0" AnchorPane.topAnchor="257.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -28,16 +28,16 @@
             <RowConstraints maxHeight="55.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="rep1" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#rep1" prefHeight="17.0" prefWidth="217.0" text="Reponse 1" textAlignment="CENTER" />
-            <Label fx:id="rep2" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#rep2" prefHeight="17.0" prefWidth="219.0" text="Reponse 2" textAlignment="CENTER" GridPane.rowIndex="1" />
-            <Label fx:id="rep3" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#rep3" prefHeight="17.0" prefWidth="217.0" text="Reponse 3" textAlignment="CENTER" GridPane.columnIndex="1" />
-            <Label fx:id="rep4" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#rep4" prefHeight="17.0" prefWidth="219.0" text="Reponse 4" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label id="rep" fx:id="rep1" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#rep1" prefHeight="17.0" prefWidth="217.0" text="Reponse 1" textAlignment="CENTER" />
+            <Label id="rep" fx:id="rep2" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#rep2" prefHeight="17.0" prefWidth="219.0" text="Reponse 2" textAlignment="CENTER" GridPane.rowIndex="1" />
+            <Label id="rep" fx:id="rep3" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#rep3" prefHeight="17.0" prefWidth="217.0" text="Reponse 3" textAlignment="CENTER" GridPane.columnIndex="1" />
+            <Label id="rep" fx:id="rep4" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#rep4" prefHeight="17.0" prefWidth="219.0" text="Reponse 4" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Label fx:id="joueur" alignment="CENTER" contentDisplay="CENTER" layoutY="54.0" prefHeight="17.0" prefWidth="600.0" text="Joueur" textAlignment="CENTER" />
-      <Button fx:id="suivant" layoutX="475.0" layoutY="335.0" mnemonicParsing="false" onAction="#suivant" prefHeight="39.0" prefWidth="97.0" text="Suivant" />
-      <Button fx:id="accueil" layoutX="35.0" layoutY="335.0" mnemonicParsing="false" onAction="#accueil" prefHeight="39.0" prefWidth="97.0" text="Accueil" />
-      <ProgressBar fx:id="progressBar" layoutX="201.0" layoutY="355.0" prefWidth="200.0" progress="0.0" />
-      <ImageView fx:id="image" fitHeight="177.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="joueur" alignment="CENTER" contentDisplay="CENTER" layoutX="173.0" layoutY="44.0" prefHeight="17.0" prefWidth="600.0" text="Joueur" textAlignment="CENTER" />
+      <Button fx:id="suivant" layoutX="633.0" layoutY="525.0" mnemonicParsing="false" onAction="#suivant" prefHeight="39.0" prefWidth="128.0" text="Suivant" />
+      <Button fx:id="accueil" layoutX="37.0" layoutY="522.0" mnemonicParsing="false" onAction="#accueil" prefHeight="39.0" prefWidth="119.0" text="Accueil" />
+      <ProgressBar fx:id="progressBar" layoutX="286.0" layoutY="535.0" prefWidth="200.0" progress="0.0" />
+      <ImageView fx:id="image" fitHeight="177.0" fitWidth="200.0" layoutX="53.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
