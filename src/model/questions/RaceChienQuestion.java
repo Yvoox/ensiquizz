@@ -7,6 +7,12 @@ import util.DBpediaQuery;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Retrouver le nom d'une race de chien à partir d'une photo.
+ *
+ * @see QuestionFactory
+ * @author Alexandre Colicchio, Thibaud Gasser
+ */
 public class RaceChienQuestion extends Question {
 
     RaceChienQuestion() {
@@ -26,6 +32,7 @@ public class RaceChienQuestion extends Question {
                 "  FILTER(lang(?breadName)='fr') .\n" +
                 "}";
         final List<QuerySolution> solutions = DBpediaQuery.execRequete(requete);
+        // On construit la question et sa bonne réponse
         final Reponse reponse = creerReponse(solutions);
         enonce = "À quelle race appartient ce chien ?";
         bonneReponse = reponse.nomRace;
@@ -42,6 +49,11 @@ public class RaceChienQuestion extends Question {
         imgUrl = reponse.imgUrl;
     }
 
+    /**
+     * Tire une entrée au hasard parmi la liste des résulats de la requête.
+     * @param solutions liste des résultats de la requête SPARQL.
+     * @return objet Reponse qui contient le nom de la race et une url vers sa photo.
+     */
     private Reponse creerReponse(List<QuerySolution> solutions) {
         // On tire une réponse aléatoire
         final QuerySolution solution = solutions.get(rand.nextInt(solutions.size()));
@@ -50,10 +62,18 @@ public class RaceChienQuestion extends Question {
         return new Reponse(nomRace, imgUrl);
     }
 
+    /**
+     * Classe de données qui stocke les éléments utiles à la question extraits à partir des
+     * résultats de la requête SPARQL.
+     */
     private final class Reponse {
         private final String nomRace;
         private final String imgUrl;
 
+        /**
+         * @param nomRace nom de la race.
+         * @param imgUrl url vers la photo.
+         */
         private Reponse(String nomRace, String imgUrl) {
             this.nomRace = nomRace;
             this.imgUrl = imgUrl;

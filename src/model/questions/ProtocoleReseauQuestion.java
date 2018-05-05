@@ -7,6 +7,12 @@ import util.DBpediaQuery;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Retrouver la couche du modèle OSI du protocole réseau proposé.
+ *
+ * @see QuestionFactory
+ * @author Alexandre Colicchio, Thibaud Gasser
+ */
 public class ProtocoleReseauQuestion extends Question {
 
     ProtocoleReseauQuestion() {
@@ -26,6 +32,7 @@ public class ProtocoleReseauQuestion extends Question {
                 "   FILTER(lang(?protocolName)='en')\n" +
                 "}";
         final List<QuerySolution> solutions = DBpediaQuery.execRequete(req);
+        // On construit la question et sa bonne réponse
         final Reponse reponse = creerReponse(solutions);
         this.enonce = "Quelle est la couche OSI du protocole " + reponse.nomProtocole + " ?";
         this.bonneReponse = reponse.coucheOSI;
@@ -41,6 +48,11 @@ public class ProtocoleReseauQuestion extends Question {
         }
     }
 
+    /**
+     * Tire une entrée au hasard parmi la liste des résulats de la requête.
+     * @param solutions liste des résulats de la requête SPARQL.
+     * @return objet Reponse qui contient le nom du protocole et la couche OSI correspondante.
+     */
     private Reponse creerReponse(List<QuerySolution> solutions) {
         // On tire une réponse aléatoire
         final QuerySolution solution = solutions.get(rand.nextInt(solutions.size()));
@@ -49,12 +61,21 @@ public class ProtocoleReseauQuestion extends Question {
         return new Reponse(nomProtocole, coucheOSI);
     }
 
+    /**
+     * Classe de données qui stocke les éléments utiles à la question extraits à partir des
+     * résultats de la requête SPARQL.
+     */
     private final class Reponse {
         final String nomProtocole;
         final String coucheOSI;
 
+        /**
+         * @param nomProtocole nom du protocole réseau
+         * @param coucheOSI couche correspondante du modèle OSI.
+         */
         private Reponse(String nomProtocole, String coucheOSI) {
             this.nomProtocole = nomProtocole;
+            // On normalise le nom du protocole
             this.coucheOSI = coucheOSI
                     .toLowerCase()
                     .replace("layer", "")

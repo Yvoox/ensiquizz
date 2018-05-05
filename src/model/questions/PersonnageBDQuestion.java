@@ -7,6 +7,12 @@ import util.DBpediaQuery;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Retrouver le nom d'un personnage de BD à partir d'une image.
+ *
+ * @see QuestionFactory
+ * @author Alexandre Colicchio, Thibaud Gasser
+ */
 public class PersonnageBDQuestion extends Question {
 
     PersonnageBDQuestion() {
@@ -24,6 +30,7 @@ public class PersonnageBDQuestion extends Question {
                 "  FILTER(lang(?characterName)='fr') .\n" +
                 "}";
         final List<QuerySolution> solutions = DBpediaQuery.execRequete(req);
+        // On construit la question et sa bonne réponse
         final Reponse reponse = creerReponse(solutions);
         enonce = "Quel est le nom de ce personnage de bande dessinée ?";
         imgUrl = reponse.imgUrl;
@@ -40,6 +47,11 @@ public class PersonnageBDQuestion extends Question {
         }
     }
 
+    /**
+     * Tire une entrée au hasard parmi la liste des résulats de la requête.
+     * @param solutions liste des résulats de la requête SPARQL.
+     * @return objet Reponse qui contient le nom du personnage et une url vers son image.
+     */
     private Reponse creerReponse(List<QuerySolution> solutions) {
         final QuerySolution solution = solutions.get(rand.nextInt(solutions.size()));
         final String nomPerso = solution.getLiteral("characterName").getString();
@@ -47,10 +59,18 @@ public class PersonnageBDQuestion extends Question {
         return new Reponse(nomPerso, imgUrl);
     }
 
+    /**
+     * Classe de données qui stocke les éléments utiles à la question extraits à partir des
+     * résultats de la requête SPARQL.
+     */
     private final class Reponse {
         final String nomPerso;
         final String imgUrl;
 
+        /**
+         * @param nomPerso nom du personnage de BD.
+         * @param imgUrl url vers une image du personnage.
+         */
         private Reponse(String nomPerso, String imgUrl) {
             this.nomPerso = nomPerso;
             this.imgUrl = imgUrl;
