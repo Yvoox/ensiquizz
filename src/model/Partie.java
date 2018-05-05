@@ -8,10 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Partie {
-    List<Player> joueurs;
-    Player joueurCourant;
-    int compteurQuestion;
-    Question questionCourante;
+
+    private final List<Player> joueurs;
+    private Player joueurCourant;
+    private int compteurQuestion;
+    private Question questionCourante;
 
     public Partie() {
         joueurs = new ArrayList<>();
@@ -32,7 +33,6 @@ public class Partie {
      * Méthode start
      * Permet de générer une partie dans un état initial
      */
-
     public void start() {
         for (Player it : joueurs) {
             it.resetScore();
@@ -44,10 +44,10 @@ public class Partie {
     }
 
     /*
-     *Methode joue
-     *Permet de valider la choix d'un joueur
-     *Passage à la question suivante ou fin si le nombre de question max est atteint
-     *Génération successive des questions
+     * Methode joue
+     * Permet de valider la choix d'un joueur
+     * Passage à la question suivante ou fin si le nombre de question max est atteint
+     * Génération successive des questions
      * Attention : le score de chaque joueur est mis à jour dans la classe Player
      * On renvoie null s'il n'y a pas encore de gagnant, le joueur gagnant sinon
      */
@@ -59,11 +59,11 @@ public class Partie {
                 joueurCourant = joueurs.get(0);
                 compteurQuestion++;
             }
-
             questionCourante = generationQuestion();
             questionCourante.ask();
             return null;
         } else {
+            // Partie terminée
             return estGagnant();
         }
     }
@@ -77,9 +77,7 @@ public class Partie {
     }
 
     private boolean verificationFinPartie() {
-        if (compteurQuestion < Constantes.NB_QUESTIONS) {
-            return false;
-        } else return true;
+        return compteurQuestion >= Constantes.NB_QUESTIONS;
     }
 
     /*
@@ -90,11 +88,10 @@ public class Partie {
     public Player estGagnant() {
         int scoreMax = 0;
         Player winner = null;
-        for (Player it : joueurs) {
-            if (it.getScore().get() > scoreMax) {
-                scoreMax = it.getScore().get();
-                winner = it;
-
+        for (Player player : joueurs) {
+            if (player.getScore().get() > scoreMax) {
+                scoreMax = player.getScore().get();
+                winner = player;
             }
         }
         return winner;

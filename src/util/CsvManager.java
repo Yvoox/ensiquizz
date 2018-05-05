@@ -13,7 +13,7 @@ import javafx.scene.chart.XYChart;
 import model.Player;
 
 public class CsvManager {
-	private String fileName;
+	private final String fileName;
 	private File file;
 
 	public CsvManager(String fileName) {
@@ -23,8 +23,7 @@ public class CsvManager {
 
 	private String getPath() {
 		final File f = new File("");
-		final String path = f.getAbsolutePath() + File.separator + fileName;
-		return path;
+		return f.getAbsolutePath() + File.separator + fileName;
 	}
 
 	public void getResource() {
@@ -51,7 +50,6 @@ public class CsvManager {
 					System.out.println("Csv creation failed");
 				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				System.out.println("Error during csv creation");
 				e.printStackTrace();
 			}
@@ -60,7 +58,7 @@ public class CsvManager {
 
 
 
-	public List<String> readFile() throws IOException {
+	private List<String> readFile() throws IOException {
 
 		List<String> result = new ArrayList<>();
 
@@ -77,18 +75,17 @@ public class CsvManager {
 		return result;
 	}
 
-	public void writeCSV(String entry) {
-		String content="";
+	private void writeCSV(String entry) {
+		StringBuilder content= new StringBuilder();
 		try {
 			for(String it : readFile()) {
-				content+=it+"\n";
+				content.append(it).append("\n");
 			}
-			content+=entry+"\n";
+			content.append(entry).append("\n");
 			FileWriter writer = new FileWriter(fileName);
-			writer.append(content);
+			writer.append(content.toString());
 			writer.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -108,7 +105,6 @@ public class CsvManager {
 				else graph.getData().clear();
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -134,7 +130,6 @@ public class CsvManager {
 			writeCSV(content+playerRow);
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -150,7 +145,6 @@ public class CsvManager {
 			}
 			if(!exist) writeCSV(player.getName().get());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
