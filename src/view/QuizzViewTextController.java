@@ -12,8 +12,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import model.Player;
+import util.Constantes;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -236,14 +236,16 @@ public class QuizzViewTextController {
             image.setVisible(true);
         }
 
+        // Durée d'une frame de la barre de progression
+        final Duration frameDuration = Constantes.TEMPS_PAR_QUESTION.divide(10);
         progressBarTimer = new Timeline(new KeyFrame(
-                Duration.millis(1000),
+                frameDuration,
                 actionEvent -> progressBarAdd()));
         progressBarTimer.setCycleCount(Animation.INDEFINITE);
         progressBarTimer.play();
 
         timer = new Timeline(new KeyFrame(
-                Duration.millis(10000),
+                Constantes.TEMPS_PAR_QUESTION,
                 actionEvent -> timeOut()));
         timer.play();
 
@@ -262,7 +264,6 @@ public class QuizzViewTextController {
         rep2.setText(rep.get(1));
         rep3.setText(rep.get(2));
         rep4.setText(rep.get(3));
-
     }
 
     /**

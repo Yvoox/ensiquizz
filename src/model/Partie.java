@@ -29,7 +29,7 @@ public class Partie {
         joueurs.remove(index);
     }
 
-    /*
+    /**
      * Méthode start
      * Permet de générer une partie dans un état initial
      */
@@ -43,7 +43,7 @@ public class Partie {
         questionCourante.ask();
     }
 
-    /*
+    /**
      * Methode joue
      * Permet de valider la choix d'un joueur
      * Passage à la question suivante ou fin si le nombre de question max est atteint
@@ -53,12 +53,7 @@ public class Partie {
      */
     public Player joue() {
         if (!verificationFinPartie()) {
-            if (joueurs.indexOf(joueurCourant) + 1 < joueurs.size())
-                joueurCourant = joueurs.get(joueurs.indexOf(joueurCourant) + 1);
-            else {
-                joueurCourant = joueurs.get(0);
-                compteurQuestion++;
-            }
+            joueurSuivant();
             questionCourante = generationQuestion();
             questionCourante.ask();
             return null;
@@ -68,7 +63,16 @@ public class Partie {
         }
     }
 
-    /*
+    private void joueurSuivant() {
+        if (joueurs.indexOf(joueurCourant) + 1 < joueurs.size())
+            joueurCourant = joueurs.get(joueurs.indexOf(joueurCourant) + 1);
+        else {
+            joueurCourant = joueurs.get(0);
+            compteurQuestion++;
+        }
+    }
+
+    /**
      * Methode generationQuestion
      * Permet de déléguer la méthode à la factory
      */
@@ -80,7 +84,7 @@ public class Partie {
         return compteurQuestion >= Constantes.NB_QUESTIONS;
     }
 
-    /*
+    /**
      * Methode estGagnant
      * Renvoie le gagnant de la partie
      * Elle peut servir à trouver le joueur en tête également

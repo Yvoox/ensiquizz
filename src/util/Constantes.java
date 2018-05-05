@@ -1,5 +1,7 @@
 package util;
 
+import javafx.util.Duration;
+
 public abstract class Constantes {
 
     /**
@@ -26,4 +28,5 @@ public abstract class Constantes {
     public static final String NOM_APP = "EnsiQuizz";
     static final String DBPEDIA_URL = "http://dbpedia.org/sparql";
     static final String DBPEDIA_FR_URL = "http://fr.dbpedia.org/sparql";
+    public static final Duration TEMPS_PAR_QUESTION = Duration.seconds(10);
 }
