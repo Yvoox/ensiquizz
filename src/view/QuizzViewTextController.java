@@ -15,6 +15,7 @@ import java.util.TimerTask;
 
 import javax.imageio.ImageIO;
 
+import javafx.scene.image.Image;
 import org.apache.http.impl.io.SocketOutputBuffer;
 
 import application.Main;
@@ -239,7 +240,7 @@ public class QuizzViewTextController {
 	/**
 	 * Is called by the main application to give a reference back to itself.
 	 *
-	 * @param mainApp
+	 * @param main
 	 */
 	public void setMainApp(Main main) {
 		this.main = main;

@@ -23,4 +23,5 @@ public abstract class Constantes {
 			"Race de chien",
 			"Protocole réseau"
 	};
+    public static final String NOM_APP = "EnsiQuizz";
 }
